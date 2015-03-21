@@ -29,10 +29,15 @@ public class DefaultScenario implements IScenario {
         defaultScenarioSceneList = new ArrayList<Scene>();
     }
 
+    @Override
     public Map getScenarioMap() {
         return defaultScenarioMap;
     }
 
+    @Override
+    public List<Scene> getScenarioSceneList() {
+        return defaultScenarioSceneList;
+    }
     /**
      * Checks if the scenario is completed.
      * @return false as long as scenario is in progress
@@ -48,16 +53,15 @@ public class DefaultScenario implements IScenario {
      */
     @Override
     public final void setScenarioMap() {
-        this.defaultScenarioMap.addExitToScene(0, new SceneExit("west", 2));
-        this.defaultScenarioMap.addExitToScene(2, new SceneExit("east", 0));
-        this.defaultScenarioMap.addExitToScene(2, new SceneExit("south", 3));
-        this.defaultScenarioMap.addExitToScene(3, new SceneExit("east", 1));
-        this.defaultScenarioMap.addExitToScene(3, new SceneExit("south", 4));
-        this.defaultScenarioMap.addExitToScene(3, new SceneExit("north", 2));
-        this.defaultScenarioMap.addExitToScene(1, new SceneExit("west", 3));
-        this.defaultScenarioMap.addExitToScene(4, new SceneExit("north", 3));
+        this.defaultScenarioMap.addExitToScene(this.getScenarioSceneList().get(0), new SceneExit("west", 2));
+        this.defaultScenarioMap.addExitToScene(this.getScenarioSceneList().get(2), new SceneExit("east", 0));
+        this.defaultScenarioMap.addExitToScene(this.getScenarioSceneList().get(2), new SceneExit("south", 3));
+        this.defaultScenarioMap.addExitToScene(this.getScenarioSceneList().get(3), new SceneExit("east", 1));
+        this.defaultScenarioMap.addExitToScene(this.getScenarioSceneList().get(3), new SceneExit("south", 4));
+        this.defaultScenarioMap.addExitToScene(this.getScenarioSceneList().get(3), new SceneExit("north", 2));
+        this.defaultScenarioMap.addExitToScene(this.getScenarioSceneList().get(1), new SceneExit("west", 3));
+        this.defaultScenarioMap.addExitToScene(this.getScenarioSceneList().get(4), new SceneExit("north", 3));
     }
-
     /**
      *Setting of the default scenario scenes.
      */
@@ -77,10 +81,5 @@ public class DefaultScenario implements IScenario {
         this.defaultScenarioSceneList.add(newScene);
         newScene = new Scene(4, "You are in a basement. North there is a staircase leading upwards.");
         this.defaultScenarioSceneList.add(newScene);
-    }
-
-    @Override
-    public List<Scene> getScenarioSceneList() {
-        return defaultScenarioSceneList;
     }
 }
