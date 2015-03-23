@@ -10,6 +10,7 @@ package com.kroz.enums;
  * @author Tony
  */
 public enum Direction {
+    DEFAULT("DEFAULT"),
     N("NORTH"),
     NW("NORTHWEST"), NE("NORTHEAST"),
     W("WEST"), E("EAST"),
