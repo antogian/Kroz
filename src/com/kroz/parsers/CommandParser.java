@@ -14,7 +14,9 @@ import com.kroz.scenario.IScenario;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EmptyStackException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -22,7 +24,8 @@ import java.util.List;
  */
 public class CommandParser {
     private List<String> rawCommandText;
-    private List<String> commands; //maybe static
+    private List<String> commands;
+    private Map<String, Class<? extends ICommand>> commandMap;
 
     public CommandParser() {
         initialize();
@@ -36,6 +39,10 @@ public class CommandParser {
         this.commands = new ArrayList<String>();
         this.commands.add("GO");
         this.commands.add("LOOK");
+        this.commandMap = new HashMap<>();
+        this.commandMap.put("GO", GO.class);
+        this.commandMap.put("LOOK", LOOK.class);
+        this.commandMap.put("EXIT", EXIT.class);
     }
     
     /**
@@ -80,7 +87,7 @@ public class CommandParser {
      * @throws IllegalArgumentException indicates that the method has been passed an illegal or inappropriate argument
      */
     public ICommand createCommand(Player player, IScenario scenario) throws IllegalArgumentException{
-        ICommand newCommand;
+        /*ICommand newCommand;
         if (this.rawCommandText.get(0).equalsIgnoreCase("GO")) {
             if (this.rawCommandText.size() > 2) {
                 System.out.println("Command GO takes one parameter. Try: [GO parameter]");
@@ -112,6 +119,26 @@ public class CommandParser {
             System.out.println("Invalid Command. Exception thrown.");
             throw new IllegalArgumentException();
         }
-        return newCommand;
+        return newCommand;*/
+        ICommand newCommand;
+        if(commandMap.containsKey(this.rawCommandText.get(0).toUpperCase())){
+            try{
+                newCommand = commandMap.get(this.rawCommandText.get(0).toUpperCase()).newInstance();
+                return newCommand;
+            }
+            catch(IllegalAccessException e){
+                System.out.println("IllegalAccessException thrown");
+            }
+            catch(InstantiationException e){
+                System.out.println("InstantiationException thrown");
+            }
+            catch(ExceptionInInitializerError e){
+                System.out.println("ExceptionInInitializerError thrown");
+            }
+            catch(SecurityException e){
+                System.out.println("SecurityException thrown");
+            }
+        }
+        return null;
     }
 }
