@@ -7,7 +7,7 @@ package com.kroz.scenes;
 
 public class SceneExit {
     private String direction;
-    private Integer destinationSceneId;
+    private Scene destinationScene;
 
     public SceneExit() {
         initialize();
@@ -17,25 +17,25 @@ public class SceneExit {
      * Initializes the attributes of a new SceneExit object.
      */
     private void initialize() {
-        direction = "default destination";
-        destinationSceneId = -1;
+        direction = "Default direction.";
+        destinationScene = new Scene("Default Scene Description.");
     }
 
     /**
      * Constructor with arguments for SceneExit objects.
      * @param newDirection direction to which you can change scene (e.g. west)
-     * @param newDestinationSceneId SceneID of the scene following the exit (e.g. 2)
+     * @param newDestinationScene Scene of the direction of the exit (e.g. 2)
      */
-    public SceneExit(String newDirection, Integer newDestinationSceneId) {
+    public SceneExit(String newDirection, Scene newDestinationScene) {
         this.direction = newDirection;
-        this.destinationSceneId = newDestinationSceneId;
+        this.destinationScene = newDestinationScene;
     }
 
     public String getDirection() {
         return direction;
     }
 
-    public Integer getDestinationSceneId() {
-        return destinationSceneId;
+    public Scene getDestinationScene() {
+        return destinationScene;
     }
 }

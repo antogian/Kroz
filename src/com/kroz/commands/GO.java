@@ -19,7 +19,11 @@ public class GO implements ICommand {
     /**
      * The current scenario.
      */
-     private final IScenario currentScenario;
+    private final IScenario currentScenario;
+    /**
+     * The current Player in the game.
+     */
+    private Player currentPlayer;
     /**
      * The map of the current Scenario.
      */
@@ -34,37 +38,39 @@ public class GO implements ICommand {
      * @param scenario The scenario the player is playing in.
      * @param direction The direction the player wants to move to.
      */
-    public GO(final Player player, final IScenario scenario, final String direction) {
+    public GO(Player player, final IScenario scenario, final String direction) {
         this.currentScenario = scenario;
         this.toDirection = direction;
+        this.currentPlayer = player;
         this.map = scenario.getScenarioMap();
     }
+
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
+    
     /**
      * Checks if the direction is available in the current scene.
      * @param currentScene The current scene the player is in.
      * @return True if the direction is available. False if it isn't.
      */
-    public boolean isCommandValid(Scene currentScene) {
-        return map.canGoThere(currentScene.getSceneId(), toDirection);
+    public boolean isDirectionValid(Scene currentScene) {
+        return map.canGoThere(currentScene, toDirection);
     }
     
     @Override
-    public Scene executeCommand(Scene currentScene, Player currentPlayer) {
-        Scene newScene;
-        if (this.isCommandValid(currentScene)) {
+    public void executeCommand() {
+        if (this.isDirectionValid(this.currentPlayer.getPlayerCurrentScene())) {
             try {
-                SceneExit exitToGoTo = extractCurrentSceneExit(currentScene);
-                currentScene = setCurrentScene(exitToGoTo.getDestinationSceneId());
-                currentPlayer.setPlayerCurrentSceneId(currentScene.getSceneId());
+                SceneExit exitToGoTo = extractCurrentSceneExit(this.currentPlayer.getPlayerCurrentScene());
+                this.currentPlayer.setPlayerCurrentScene(exitToGoTo.getDestinationScene());
             } catch (NoSuchFieldException e) {
                 System.out.println("You can't go that way.");
             }
         } else {
             System.out.println("Direction doesn't exist");
         }
-        newScene = currentScene;
-        System.out.println("\n" + currentScene.getSceneDescription());
-        return newScene;
+        System.out.println("\n" + this.currentPlayer.getPlayerCurrentScene().getSceneDescription());
     }
     /**
      * Extracts the Current Scenes Exit where the direction equals the direction given by the player.
@@ -74,28 +80,14 @@ public class GO implements ICommand {
      */
     private SceneExit extractCurrentSceneExit(Scene currentScene) throws NoSuchFieldException {
         SceneExit exit = new SceneExit();
-        for (SceneExit sceneExit : map.getMap().get(currentScene.getSceneId())) {
+        for (SceneExit sceneExit : map.getMap().get(currentScene)) {
             if (sceneExit.getDirection().equalsIgnoreCase(toDirection)) {
                 exit = sceneExit;
             }
         }
-        if (exit.getDestinationSceneId() == -1) {
+        if (exit.getDestinationScene().equals(new Scene())) {
             throw new NoSuchFieldException();
         }
         return exit;
-    }
-    /**
-     * Changes the current scene with the destination scene.
-     * @param sceneId The destination scenes id.
-     * @return The destination scene object.
-     */
-    public Scene setCurrentScene(Integer sceneId) {
-        Scene temp = new Scene();
-        for (Scene scene : currentScenario.getScenarioSceneList()) {
-            if (scene.getSceneId() == sceneId) {
-                temp = scene;
-            }
-        }
-        return temp;
     }
 }

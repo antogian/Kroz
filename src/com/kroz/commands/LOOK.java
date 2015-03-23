@@ -6,22 +6,23 @@
 package com.kroz.commands;
 
 import com.kroz.player.Player;
-import com.kroz.scenes.Scene;
 
 /**
  * Look command displays the description of the current scene.
  * @author Eleni Aidonidou
  */
 public class LOOK implements ICommand {
+    private Player currentPlayer;
     /**
-     * Empty Constructor.
+     * Constructor of LOOK command with parameters.
+     * @param newCurrentPlayer Current Player.
      */
-    public LOOK() {
+    public LOOK(Player newCurrentPlayer) {
+        this.currentPlayer = newCurrentPlayer;
     }
 
     @Override
-    public Scene executeCommand(Scene currentScene, Player currentPlayer) {
-        System.out.println("\n" + currentScene.getSceneDescription());
-        return currentScene;
+    public void executeCommand() {
+        System.out.println("\n" + currentPlayer.getPlayerCurrentScene().getSceneDescription());
     }
 }

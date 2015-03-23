@@ -72,7 +72,7 @@ public class Player {
      * 
      * @return playerCurrentSceneId 
      */
-    public Scene getPlayerCurrentSceneId() {
+    public Scene getPlayerCurrentScene() {
         return this.playerCurrentScene;
     }
 
