@@ -24,7 +24,6 @@ import java.util.Map;
  */
 public class CommandParser {
     private List<String> rawCommandText;
-    private List<String> commands;
     private Map<String, Class<? extends ICommand>> commandMap;
 
     public CommandParser() {
@@ -36,9 +35,6 @@ public class CommandParser {
     */
     private void initialize() {
         this.rawCommandText = new ArrayList<String>();
-        this.commands = new ArrayList<String>();
-        this.commands.add("GO");
-        this.commands.add("LOOK");
         this.commandMap = new HashMap<>();
         this.commandMap.put("GO", GO.class);
         this.commandMap.put("LOOK", LOOK.class);
