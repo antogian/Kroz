@@ -10,6 +10,7 @@ import com.kroz.player.Player;
 import com.kroz.scenario.IScenario;
 import com.kroz.scenes.Scene;
 import com.kroz.scenes.SceneExit;
+import com.kroz.enums.Direction;
 
 /**
  *
@@ -31,14 +32,14 @@ public class GO implements ICommand {
     /**
      * The direction where the player wants to go to.
      */
-    private final String toDirection;
+    private Direction toDirection;
     /**
      * Constructor of class Go with parameters.
      * @param player The player that asked to execute the command GO.
      * @param scenario The scenario the player is playing in.
      * @param direction The direction the player wants to move to.
      */
-    public GO(Player player, final IScenario scenario, final String direction) {
+    public GO(Player player, final IScenario scenario, Direction direction) {
         this.currentScenario = scenario;
         this.toDirection = direction;
         this.currentPlayer = player;
@@ -81,7 +82,7 @@ public class GO implements ICommand {
     private SceneExit extractCurrentSceneExit(Scene currentScene) throws NoSuchFieldException {
         SceneExit exit = new SceneExit();
         for (SceneExit sceneExit : map.getMap().get(currentScene)) {
-            if (sceneExit.getDirection().equalsIgnoreCase(toDirection)) {
+            if (sceneExit.getDirection().getName().equalsIgnoreCase(this.toDirection.getName())) {
                 exit = sceneExit;
             }
         }
