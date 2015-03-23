@@ -13,6 +13,6 @@ public interface IScenario {
     boolean isScenarioComplete();
     void setScenarioSceneList();
     void setScenarioMap();
-    List<Scene> getScenarioSceneList();
     Map getScenarioMap();
+    List<Scene> getScenarioSceneList();
 }

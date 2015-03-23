@@ -5,6 +5,7 @@
  */
 package com.kroz.player;
 
+import com.kroz.scenes.Scene;
 import java.util.Scanner;
 
 /**
@@ -13,7 +14,7 @@ import java.util.Scanner;
  */
 public class Player {
     private String playerName;
-    private Integer playerCurrentSceneId;
+    private Scene playerCurrentScene;
 
     public Player() {
         initialize();
@@ -25,7 +26,7 @@ public class Player {
      */
     public Player(String playerName) {
         this.playerName = playerName;
-        this.playerCurrentSceneId = 0;
+        this.playerCurrentScene = new Scene("Default Scene Desctiption.");
     }
     
     /*
@@ -33,7 +34,7 @@ public class Player {
     */
     private void initialize() {
         playerName = "Default Player";
-        playerCurrentSceneId = -1;
+        playerCurrentScene = new Scene("Default Scene Desctiption.");
     }
 
     /**
@@ -53,28 +54,26 @@ public class Player {
         }
         this.playerName = temp;
     }
-    
-    /**
-    * 
-    * @param playerCurrentSceneId playerCurrentSceneId to set
-    */
-    public void setPlayerCurrentSceneId(Integer playerCurrentSceneId) {
-        this.playerCurrentSceneId = playerCurrentSceneId;
-    }
-    
     /**
      * Displays player's name at screen
      */
     public void getPlayerName() {
         System.out.println("Current Player: " + this.playerName);
     }
+    /**
+    * 
+    * @param playerCurrentScene playerCurrentScene to set
+    */
+    public void setPlayerCurrentScene(Scene playerCurrentScene) {
+        this.playerCurrentScene = playerCurrentScene;
+    }
 
     /**
      * 
      * @return playerCurrentSceneId 
      */
-    public Integer getPlayerCurrentSceneId() {
-        return this.playerCurrentSceneId;
+    public Scene getPlayerCurrentSceneId() {
+        return this.playerCurrentScene;
     }
 
 }

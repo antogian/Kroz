@@ -5,31 +5,32 @@
  */
 package com.kroz.map;
 
+import com.kroz.scenes.Scene;
 import com.kroz.scenes.SceneExit;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class Map {
-    private HashMap<Integer, List<SceneExit>> map;
+    private HashMap<Scene, List<SceneExit>> map;
 
     public Map() {
         initialize();
     }
 
     private void initialize() {
-        map = new HashMap<Integer, List<SceneExit>>();
+        map = new HashMap<Scene, List<SceneExit>>();
     }
 
-    public HashMap<Integer, List<SceneExit>> getMap() {
+    public HashMap<Scene, List<SceneExit>> getMap() {
         return map;
     }
 
     /**
-     * Setting of new map
+     * Setting of new map.
      * @param map an argument of complete map (i.e. a HashMap filled with keys and values)
      */
-    public void setMap(HashMap<Integer, List<SceneExit>> map) {
+    public void setMap(HashMap<Scene, List<SceneExit>> map) {
         this.map = map;
     }
 
@@ -37,15 +38,15 @@ public class Map {
      * Creates a list of possible exit objects in map's scenes.
      * If there is no such list, it creates it.
      * If there is an exit list and it does not contain the new exit already, it does add it.
-     * @param mapKey it is actually the ID of the scene on exit.
+     * @param keyScene it is actually the scene on exit.
      * @param newExit it is the direction and destination of the exit (i.e. attributes of SceneExit object).
      */
-    public void addExitToScene(Integer mapKey, SceneExit newExit) {
-        List<SceneExit> exitsList = map.get(mapKey);
+    public void addExitToScene(Scene keyScene, SceneExit newExit) {
+        List<SceneExit> exitsList = map.get(keyScene);
         if (exitsList == null) {
             exitsList = new ArrayList<SceneExit>();
             exitsList.add(newExit);
-            map.put(mapKey, exitsList);
+            map.put(keyScene, exitsList);
         } else {
             if (!exitsList.contains(newExit)) {
                 exitsList.add(newExit);
@@ -54,15 +55,15 @@ public class Map {
     }
 
     /**
-     * Checks if movement through map is eligible 
+     * Checks if movement through map is eligible
      * (i.e. if the player is navigating in eligible for navigation directions).
-     * @param mapKey where player is supposed to go.
+     * @param keyScene where player is supposed to go.
      * @param direction the direction in which the player wants to move.
      * @return true if player is navigating correctly.
      */
-    public boolean canGoThere(Integer mapKey, String direction) {
+    public boolean canGoThere(Scene keyScene, String direction) {
         boolean canGo = false;
-        for (SceneExit tempExit : this.map.get(mapKey)) {
+        for (SceneExit tempExit : this.map.get(keyScene)) {
             if (tempExit.getDirection().equalsIgnoreCase(direction)) {
                 canGo = true;
             }
