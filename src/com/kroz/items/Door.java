@@ -14,6 +14,7 @@ public class Door extends Item {
     public Door(String name, String itemDescription, ItemType type, ItemState state) {
         super(name, itemDescription, type, state);
     }
+    
     /**
      * Implementation of the abstract method of the Item superclass.
      */

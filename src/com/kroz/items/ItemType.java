@@ -10,5 +10,5 @@ package com.kroz.items;
  * @author Immortuon
  */
 public enum ItemType {
-    SCENE_OBJECT, PLAYER_OBJECT;
+   SCENE_OBJECT, PLAYER_OBJECT; 
 }

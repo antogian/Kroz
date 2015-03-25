@@ -9,6 +9,7 @@ package com.kroz.items;
  *
  * @author Immortuon
  */
+
 public enum ItemState {
     ENABLED, DISABLED;
 }
