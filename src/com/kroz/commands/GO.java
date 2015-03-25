@@ -11,7 +11,7 @@ import com.kroz.scenes.Scene;
 import com.kroz.scenes.SceneExit;
 import java.util.ArrayList;
 import java.util.List;
-
+import com.kroz.enums.Direction;
 /**
  *
  * @author Eleni Aidonidou
@@ -28,14 +28,14 @@ public class GO implements ICommand {
     /**
      * The direction where the player wants to go to.
      */
-    private String toDirection;
+    private Direction toDirection;
     private List<String> currentCommandTextList;
 
     public GO() {
         initialize();
     }
     private void initialize() {
-        this.toDirection = " ";
+        this.toDirection = Direction.DEFAULT;
         this.currentPlayer = new Player();
         this.map = currentPlayer.getCurrentScenario().getScenarioMap();
         currentCommandTextList = new ArrayList<String>();
@@ -77,7 +77,7 @@ public class GO implements ICommand {
     private SceneExit extractCurrentSceneExit(Scene currentScene) throws NoSuchFieldException {
         SceneExit exit = new SceneExit();
         for (SceneExit sceneExit : map.getMap().get(currentScene)) {
-            if (sceneExit.getDirection().equalsIgnoreCase(toDirection)) {
+            if (sceneExit.getDirection().getValue().equalsIgnoreCase(this.toDirection.getValue())) {
                 exit = sceneExit;
             }
         }
