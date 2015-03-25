@@ -7,10 +7,10 @@ package com.kroz.commands;
 
 import com.kroz.map.Map;
 import com.kroz.player.Player;
-import com.kroz.scenario.IScenario;
 import com.kroz.scenes.Scene;
 import com.kroz.scenes.SceneExit;
-import com.kroz.enums.Direction;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -18,32 +18,27 @@ import com.kroz.enums.Direction;
  */
 public class GO implements ICommand {
     /**
-     * The current scenario.
-     */
-    private final IScenario currentScenario;
-    /**
      * The current Player in the game.
      */
     private Player currentPlayer;
     /**
      * The map of the current Scenario.
      */
-    private final Map map;
+    private Map map;
     /**
      * The direction where the player wants to go to.
      */
-    private Direction toDirection;
-    /**
-     * Constructor of class Go with parameters.
-     * @param player The player that asked to execute the command GO.
-     * @param scenario The scenario the player is playing in.
-     * @param direction The direction the player wants to move to.
-     */
-    public GO(Player player, final IScenario scenario, Direction direction) {
-        this.currentScenario = scenario;
-        this.toDirection = direction;
-        this.currentPlayer = player;
-        this.map = scenario.getScenarioMap();
+    private String toDirection;
+    private List<String> currentCommandTextList;
+
+    public GO() {
+        initialize();
+    }
+    private void initialize() {
+        this.toDirection = " ";
+        this.currentPlayer = new Player();
+        this.map = currentPlayer.getCurrentScenario().getScenarioMap();
+        currentCommandTextList = new ArrayList<String>();
     }
 
     public Player getCurrentPlayer() {
@@ -58,7 +53,7 @@ public class GO implements ICommand {
     public boolean isDirectionValid(Scene currentScene) {
         return map.canGoThere(currentScene, toDirection);
     }
-    
+
     @Override
     public void executeCommand() {
         if (this.isDirectionValid(this.currentPlayer.getPlayerCurrentScene())) {
@@ -82,7 +77,7 @@ public class GO implements ICommand {
     private SceneExit extractCurrentSceneExit(Scene currentScene) throws NoSuchFieldException {
         SceneExit exit = new SceneExit();
         for (SceneExit sceneExit : map.getMap().get(currentScene)) {
-            if (sceneExit.getDirection().getName().equalsIgnoreCase(this.toDirection.getName())) {
+            if (sceneExit.getDirection().equalsIgnoreCase(toDirection)) {
                 exit = sceneExit;
             }
         }
@@ -90,5 +85,25 @@ public class GO implements ICommand {
             throw new NoSuchFieldException();
         }
         return exit;
+    }
+
+    @Override
+    public void setCurrentPlayer(Player currentPlayer) {
+        this.currentPlayer = currentPlayer;
+    }
+
+    @Override
+    public void setCommandTextList(List<String> rawCommandText) {
+        this.currentCommandTextList = rawCommandText;
+    }
+
+    @Override
+    public boolean isValid() {
+        if (this.currentCommandTextList.size() != 1) {
+           System.out.println("Command GO takes one parameter. Try: [GO parameter]");
+           return false;
+        } else {
+            return true;
+        }
     }
 }
