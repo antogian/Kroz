@@ -10,6 +10,7 @@ package com.kroz.enums;
  * @author Tony
  */
 public enum Direction {
+    DEFAULT("DEFAULT"),
     N("NORTH"),
     NW("NORTHWEST"), NE("NORTHEAST"),
     W("WEST"), E("EAST"),
@@ -22,11 +23,11 @@ public enum Direction {
         this.name = name;
     }
     
-    public void setName(String name){
+    public void setValue(String name){
         this.name = name;
     }
     
-    public String getName(){
+    public String getValue(){
         return this.name;
     }
 }
