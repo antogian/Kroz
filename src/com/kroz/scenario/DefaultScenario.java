@@ -10,6 +10,7 @@ import com.kroz.scenes.Scene;
 import com.kroz.scenes.SceneExit;
 import java.util.ArrayList;
 import java.util.List;
+import com.kroz.enums.Direction;
 
 
 public class DefaultScenario implements IScenario {
@@ -54,21 +55,21 @@ public class DefaultScenario implements IScenario {
     @Override
     public final void setScenarioMap() {
         this.defaultScenarioMap.addExitToScene(this.getScenarioSceneList().get(0),
-                new SceneExit("west", this.getScenarioSceneList().get(2)));
+                new SceneExit(Direction.W, this.getScenarioSceneList().get(2)));
         this.defaultScenarioMap.addExitToScene(this.getScenarioSceneList().get(2),
-                new SceneExit("east", this.getScenarioSceneList().get(0)));
+                new SceneExit(Direction.E, this.getScenarioSceneList().get(0)));
         this.defaultScenarioMap.addExitToScene(this.getScenarioSceneList().get(2),
-                new SceneExit("south", this.getScenarioSceneList().get(3)));
+                new SceneExit(Direction.S, this.getScenarioSceneList().get(3)));
         this.defaultScenarioMap.addExitToScene(this.getScenarioSceneList().get(3),
-                new SceneExit("east", this.getScenarioSceneList().get(1)));
+                new SceneExit(Direction.E, this.getScenarioSceneList().get(1)));
         this.defaultScenarioMap.addExitToScene(this.getScenarioSceneList().get(3),
-                new SceneExit("south", this.getScenarioSceneList().get(4)));
+                new SceneExit(Direction.S, this.getScenarioSceneList().get(4)));
         this.defaultScenarioMap.addExitToScene(this.getScenarioSceneList().get(3),
-                new SceneExit("north", this.getScenarioSceneList().get(2)));
+                new SceneExit(Direction.N, this.getScenarioSceneList().get(2)));
         this.defaultScenarioMap.addExitToScene(this.getScenarioSceneList().get(1),
-                new SceneExit("west", this.getScenarioSceneList().get(3)));
+                new SceneExit(Direction.W, this.getScenarioSceneList().get(3)));
         this.defaultScenarioMap.addExitToScene(this.getScenarioSceneList().get(4),
-                new SceneExit("north", this.getScenarioSceneList().get(3)));
+                new SceneExit(Direction.N, this.getScenarioSceneList().get(3)));
     }
     /**
      *Setting of the default scenario scenes.
