@@ -9,6 +9,7 @@ import com.kroz.map.Map;
 import com.kroz.player.Player;
 import com.kroz.scenes.Scene;
 import com.kroz.scenes.SceneExit;
+import com.kroz.enums.Direction;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,14 +29,16 @@ public class GO implements ICommand {
     /**
      * The direction where the player wants to go to.
      */
-    private String toDirection;
+    private Direction toDirection;
     private List<String> currentCommandTextList;
-
+    /**
+     * Constructor of class Go without parameters.
+     */
     public GO() {
         initialize();
     }
     private void initialize() {
-        this.toDirection = " ";
+        this.toDirection = Direction.DEFAULT;
         this.currentPlayer = new Player();
         this.map = currentPlayer.getCurrentScenario().getScenarioMap();
         currentCommandTextList = new ArrayList<String>();
@@ -44,7 +47,6 @@ public class GO implements ICommand {
     public Player getCurrentPlayer() {
         return currentPlayer;
     }
-    
     /**
      * Checks if the direction is available in the current scene.
      * @param currentScene The current scene the player is in.
@@ -77,7 +79,7 @@ public class GO implements ICommand {
     private SceneExit extractCurrentSceneExit(Scene currentScene) throws NoSuchFieldException {
         SceneExit exit = new SceneExit();
         for (SceneExit sceneExit : map.getMap().get(currentScene)) {
-            if (sceneExit.getDirection().equalsIgnoreCase(toDirection)) {
+            if (sceneExit.getDirection().getName().equalsIgnoreCase(this.toDirection.getName())) {
                 exit = sceneExit;
             }
         }
