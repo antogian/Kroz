@@ -11,7 +11,6 @@ import com.kroz.parsers.ConsoleInputParser;
 import com.kroz.player.Player;
 import com.kroz.scenario.DefaultScenario;
 import com.kroz.scenario.IScenario;
-import com.kroz.scenes.Scene;
 
 
 /**
@@ -25,17 +24,18 @@ public class Main {
      */
     public static void main(final String[] args) {
         IScenario scenario = new DefaultScenario();
-        Player player = new Player("The Player!");
+        Player player = new Player("The Player!", scenario);
         ConsoleInputParser consoleInputParser = new ConsoleInputParser();
         CommandParser commandParser = new CommandParser();
         ICommand currentCommand;
-
+        /*
         //Gets new Player Name and prints out The new players name
         player.setPlayerName();
         player.getPlayerName();
+        */
         //Sets the players current scene to the first scene of the scenario
         player.setPlayerCurrentScene(scenario.getScenarioSceneList().get(0));
-
+        /*
          //Prints out the Scenes of the current Scenario
         System.out.println("Scene List:");
         for (Scene scene : scenario.getScenarioSceneList()) {
@@ -43,13 +43,13 @@ public class Main {
                     .append(" Scene Description: ").append(scene.getSceneDescription())
                     .append("\n").toString());
         }
-
+        */
         System.out.println(player.getPlayerCurrentScene().getSceneDescription());
 
         while (!scenario.isScenarioComplete()) {
             commandParser.setRawCommandText(consoleInputParser.getInputFromConsole());
             try {
-                currentCommand = commandParser.createCommand(player, scenario);
+                currentCommand = commandParser.createCommand(player);
                 currentCommand.executeCommand();
             } catch (IllegalArgumentException e) {
             /*if exception is caused user is prompted to enter

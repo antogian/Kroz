@@ -5,6 +5,9 @@
  */
 package com.kroz.commands;
 
+import com.kroz.player.Player;
+import java.util.List;
+
 /**
  * The interface that all commands implement.
  * @author Eleni Aidonidou
@@ -14,4 +17,8 @@ public interface ICommand {
      * Executes the ICommand object that was created.
      */
     void executeCommand();
+    void setCurrentPlayer(Player currentPlayer);
+    public void setCommandTextList(List<String> rawCommandText);
+
+    public boolean isValid();
 }

@@ -5,6 +5,7 @@
  */
 package com.kroz.player;
 
+import com.kroz.scenario.IScenario;
 import com.kroz.scenes.Scene;
 import java.util.Scanner;
 
@@ -15,20 +16,20 @@ import java.util.Scanner;
 public class Player {
     private String playerName;
     private Scene playerCurrentScene;
+    private IScenario currentScenario;
 
     public Player() {
         initialize();
     }
-    
     /**
      * 
      * @param playerName playersName to set 
      */
-    public Player(String playerName) {
+    public Player(String playerName, IScenario scenario) {
         this.playerName = playerName;
         this.playerCurrentScene = new Scene("Default Scene Desctiption.");
+        this.currentScenario = scenario;
     }
-    
     /*
     * Initializing attributes with default values.
     */
@@ -36,7 +37,6 @@ public class Player {
         playerName = "Default Player";
         playerCurrentScene = new Scene("Default Scene Desctiption.");
     }
-
     /**
     *Sets the player's name.
     * 
@@ -67,7 +67,20 @@ public class Player {
     public void setPlayerCurrentScene(Scene playerCurrentScene) {
         this.playerCurrentScene = playerCurrentScene;
     }
-
+    /**
+     * Getter for IScenario attribute.
+     * @return returns the IScenario object stored in current player object.
+     */
+    public IScenario getCurrentScenario() {
+        return currentScenario;
+    }
+    /**
+     * Setter for IScenario attribute.
+     * @param currentScenario New IScenario object to be put in the attribute.
+     */
+    public void setCurrentScenario(IScenario currentScenario) {
+        this.currentScenario = currentScenario;
+    }
     /**
      * 
      * @return playerCurrentSceneId 
@@ -75,5 +88,4 @@ public class Player {
     public Scene getPlayerCurrentScene() {
         return this.playerCurrentScene;
     }
-
 }
