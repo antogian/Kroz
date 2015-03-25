@@ -10,6 +10,7 @@ import com.kroz.scenes.SceneExit;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import com.kroz.enums.Direction;
 
 public class Map {
     private HashMap<Scene, List<SceneExit>> map;
@@ -61,10 +62,10 @@ public class Map {
      * @param direction the direction in which the player wants to move.
      * @return true if player is navigating correctly.
      */
-    public boolean canGoThere(Scene keyScene, String direction) {
+    public boolean canGoThere(Scene keyScene, Direction direction) {
         boolean canGo = false;
         for (SceneExit tempExit : this.map.get(keyScene)) {
-            if (tempExit.getDirection().equalsIgnoreCase(direction)) {
+            if (tempExit.getDirection().getValue().equalsIgnoreCase(direction.getValue())) {
                 canGo = true;
             }
         }
