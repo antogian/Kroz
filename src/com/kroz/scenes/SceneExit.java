@@ -5,8 +5,11 @@
  */
 package com.kroz.scenes;
 
+
+import com.kroz.enums.Direction;
+
 public class SceneExit {
-    private String direction;
+    private Direction direction;
     private Scene destinationScene;
 
     public SceneExit() {
@@ -17,8 +20,8 @@ public class SceneExit {
      * Initializes the attributes of a new SceneExit object.
      */
     private void initialize() {
-        direction = "Default direction.";
-        destinationScene = new Scene("Default Scene Description.");
+        this.direction = Direction.DEFAULT;
+        this.destinationScene = new Scene("Default Scene Description.");
     }
 
     /**
@@ -26,13 +29,13 @@ public class SceneExit {
      * @param newDirection direction to which you can change scene (e.g. west)
      * @param newDestinationScene Scene of the direction of the exit (e.g. 2)
      */
-    public SceneExit(String newDirection, Scene newDestinationScene) {
+    public SceneExit(Direction newDirection, Scene newDestinationScene) {
         this.direction = newDirection;
         this.destinationScene = newDestinationScene;
     }
 
-    public String getDirection() {
-        return direction;
+    public Direction getDirection() {
+        return this.direction;
     }
 
     public Scene getDestinationScene() {
