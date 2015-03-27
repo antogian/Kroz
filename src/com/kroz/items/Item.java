@@ -5,23 +5,24 @@
  */
 package com.kroz.items;
 
+import com.kroz.enums.ItemType;
+import com.kroz.enums.ItemState;
+
 /**
  *
  * @author Immortuon
  */
 abstract public class Item {
-    String name;
-    String itemDescription;
-    ItemType type;
-    ItemState state;
-    
-    public Item(String name, String itemDescription, ItemType type, ItemState state)
-    {
-        this.name = name;
-        this.itemDescription = itemDescription;
-        this.type = ItemType.SCENE_OBJECT;
-        this.state = ItemState.DISABLED;
+    protected String itemName;
+    protected String itemDescription;
+    protected ItemType itemType;
+    protected ItemState itemState;
+
+    public Item (String newItemName, String newItemDescription, ItemType newItemType, ItemState newItemState) {
+        this.itemName = newItemName;
+        this.itemDescription = newItemDescription;
+        this.itemType = newItemType.SCENE_OBJECT;
+        this.itemState = newItemState.DISABLED;
     }
     abstract public void useItem();
-    
 }

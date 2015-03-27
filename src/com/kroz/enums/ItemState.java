@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.kroz.items;
+package com.kroz.enums;
 
 /**
  *
  * @author Immortuon
  */
-public enum ItemType {
-   SCENE_OBJECT, PLAYER_OBJECT; 
+
+public enum ItemState {
+    ENABLED, DISABLED;
 }

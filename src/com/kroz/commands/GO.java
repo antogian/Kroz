@@ -22,22 +22,22 @@ public class GO implements ICommand {
      */
     private Player currentPlayer;
     /**
-     * The map of the current Scenario.
+     * The currentMap of the current Scenario.
      */
-    private Map map;
+    private Map currentMap;
     /**
      * The direction where the player wants to go to.
      */
-    private Direction toDirection;
+    private Direction directionToGoTo;
     private List<String> currentCommandTextList;
 
     public GO() {
         initialize();
     }
     private void initialize() {
-        this.toDirection = Direction.DEFAULT;
+        this.directionToGoTo = Direction.DEFAULT;
         this.currentPlayer = new Player();
-        this.map = new Map();
+        this.currentMap = new Map();
         this.currentCommandTextList = new ArrayList<String>();
     }
 
@@ -51,7 +51,7 @@ public class GO implements ICommand {
      * @return True if the direction is available. False if it isn't.
      */
     public boolean isDirectionValid(Scene currentScene) {
-        return map.canGoThere(currentScene, toDirection);
+        return currentMap.canGoThere(currentScene, directionToGoTo);
     }
 
     @Override
@@ -79,8 +79,8 @@ public class GO implements ICommand {
      */
     private SceneExit extractCurrentSceneExit(Scene currentScene) throws NoSuchFieldException {
         SceneExit exit = new SceneExit();
-        for (SceneExit sceneExit : map.getMap().get(currentScene)) {
-            if (sceneExit.getDirection().getValue().equalsIgnoreCase(this.toDirection.getValue())) {
+        for (SceneExit sceneExit : currentMap.getMap().get(currentScene)) {
+            if (sceneExit.getDirection().getValue().equalsIgnoreCase(this.directionToGoTo.getValue())) {
                 exit = sceneExit;
             }
         }
@@ -93,7 +93,7 @@ public class GO implements ICommand {
     @Override
     public void setCurrentPlayer(Player currentPlayer) {
         this.currentPlayer = currentPlayer;
-        this.map = currentPlayer.getCurrentScenario().getScenarioMap();
+        this.currentMap = currentPlayer.getPlayerCurrentScenario().getScenarioMap();
     }
 
     @Override
@@ -109,11 +109,11 @@ public class GO implements ICommand {
         }
     }
 
-    public Direction getToDirection() {
-        return toDirection;
+    public Direction getDirectionToGoTo() {
+        return directionToGoTo;
     }
 
     public void setToDirection() {
-        this.toDirection = Direction.extractDirection(this.currentCommandTextList.get(0));
+        this.directionToGoTo = Direction.extractDirection(this.currentCommandTextList.get(0));
     }
 }

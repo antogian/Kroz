@@ -11,7 +11,7 @@ public class Scene {
     public Scene() {
         initialize();
     }
-    
+
     /**
      * Initializes the attributes of a new Scene object.
      */
@@ -21,10 +21,10 @@ public class Scene {
 
     /**
      * Constructor with arguments for Scene objects.
-     * @param sceneDescription new Scene object's description.
+     * @param newSceneDescription new Scene object's description.
      */
-    public Scene(String sceneDescription) {
-        this.sceneDescription = sceneDescription;
+    public Scene(String newSceneDescription) {
+        this.sceneDescription = newSceneDescription;
     }
 
     public String getSceneDescription() {

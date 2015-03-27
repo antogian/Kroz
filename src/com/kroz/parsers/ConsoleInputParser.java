@@ -17,14 +17,14 @@ public class ConsoleInputParser {
     public ConsoleInputParser() {
         initialize();
     }
-    
+
     /**
     *Initializes scanner object
     */
     private void initialize() {
         scanner = new Scanner(System.in);
     }
-    
+
     /**
     *@return user's input in order to become a command
     */
@@ -32,13 +32,12 @@ public class ConsoleInputParser {
         System.out.println("\nEnter Command:");
         String temp = scanner.nextLine();
         while (temp.startsWith(" ") || temp.isEmpty()) {
-            System.out.println("Invalid Input.");
-            System.out.println("Enter new input: ");
+            System.out.println("Wrong Syndax. Enter new input: ");
             temp = scanner.nextLine();
         }
         return temp;
     }
-    
+
     /**
     *Closes scanner object
     */

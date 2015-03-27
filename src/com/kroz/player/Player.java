@@ -5,6 +5,7 @@
  */
 package com.kroz.player;
 
+import com.kroz.scenario.DefaultScenario;
 import com.kroz.scenario.IScenario;
 import com.kroz.scenes.Scene;
 import java.util.Scanner;
@@ -16,19 +17,18 @@ import java.util.Scanner;
 public class Player {
     private String playerName;
     private Scene playerCurrentScene;
-    private IScenario currentScenario;
+    private IScenario playerCurrentScenario;
 
     public Player() {
         initialize();
     }
     /**
-     * 
      * @param playerName playersName to set 
      */
     public Player(String playerName, IScenario scenario) {
         this.playerName = playerName;
         this.playerCurrentScene = new Scene("Default Scene Desctiption.");
-        this.currentScenario = scenario;
+        this.playerCurrentScenario = scenario;
     }
     /*
     * Initializing attributes with default values.
@@ -36,10 +36,11 @@ public class Player {
     private void initialize() {
         playerName = "Default Player";
         playerCurrentScene = new Scene("Default Scene Desctiption.");
+        this.playerCurrentScenario = new DefaultScenario();
     }
     /**
     *Sets the player's name.
-    * 
+    *
     *Doesn't have parameters because it reads the data from keyboard
     * and then sets the player's name.
     */
@@ -55,35 +56,35 @@ public class Player {
         this.playerName = temp;
     }
     /**
-     * Displays player's name at screen
+     * Displays player's name at screen.
      */
     public void getPlayerName() {
         System.out.println("Current Player: " + this.playerName);
     }
     /**
-    * 
-    * @param playerCurrentScene playerCurrentScene to set
+    *
+    * @param newPlayerCurrentScene newPlayerCurrentScene to set
     */
-    public void setPlayerCurrentScene(Scene playerCurrentScene) {
-        this.playerCurrentScene = playerCurrentScene;
+    public void setPlayerCurrentScene(Scene newPlayerCurrentScene) {
+        this.playerCurrentScene = newPlayerCurrentScene;
     }
     /**
      * Getter for IScenario attribute.
      * @return returns the IScenario object stored in current player object.
      */
-    public IScenario getCurrentScenario() {
-        return currentScenario;
+    public IScenario getPlayerCurrentScenario() {
+        return playerCurrentScenario;
     }
     /**
      * Setter for IScenario attribute.
-     * @param currentScenario New IScenario object to be put in the attribute.
+     * @param newPlayerCurrentScenario New IScenario object to be put in the attribute.
      */
-    public void setCurrentScenario(IScenario currentScenario) {
-        this.currentScenario = currentScenario;
+    public void setPlayerCurrentScenario(IScenario newPlayerCurrentScenario) {
+        this.playerCurrentScenario = newPlayerCurrentScenario;
     }
     /**
-     * 
-     * @return playerCurrentSceneId 
+     *
+     * @return playerCurrentSceneId.
      */
     public Scene getPlayerCurrentScene() {
         return this.playerCurrentScene;
