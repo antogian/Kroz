@@ -7,7 +7,7 @@ package com.kroz.player;
 
 import com.kroz.scenario.DefaultScenario;
 import com.kroz.scenario.IScenario;
-import com.kroz.scenes.Scene;
+import com.kroz.scene.Scene;
 import java.util.Scanner;
 
 /**

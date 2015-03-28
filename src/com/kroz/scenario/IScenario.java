@@ -6,7 +6,7 @@
 package com.kroz.scenario;
 
 import com.kroz.map.Map;
-import com.kroz.scenes.Scene;
+import com.kroz.scene.Scene;
 import java.util.List;
 
 public interface IScenario {

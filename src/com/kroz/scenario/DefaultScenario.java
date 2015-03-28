@@ -6,8 +6,8 @@
 package com.kroz.scenario;
 
 import com.kroz.map.Map;
-import com.kroz.scenes.Scene;
-import com.kroz.scenes.SceneExit;
+import com.kroz.scene.Scene;
+import com.kroz.scene.SceneExit;
 import java.util.ArrayList;
 import java.util.List;
 import com.kroz.enums.Direction;

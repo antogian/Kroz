@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.kroz.scenes;
+package com.kroz.scene;
 
 public class Scene {
     private String sceneDescription;
