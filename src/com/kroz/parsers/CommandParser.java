@@ -82,13 +82,14 @@ public class CommandParser {
                 newCommand = commandMap.get(this.rawCommandText.get(0).toUpperCase()).newInstance();
                 rawCommandText.remove(0);//removes the part of the text that defines the type of command
                 newCommand.setCommandTextList(rawCommandText);
-                if (newCommand.isValid()) {
-                    newCommand.setCurrentPlayer(player);
-                    return newCommand;
-                } else {
-                    System.out.println("Invalid Command. Exception thrown.");
-                    throw new IllegalArgumentException();
-                }
+                newCommand.setCurrentPlayer(player);
+//                if (newCommand.isValid()) {
+//                    
+//                    return newCommand;
+//                } else {
+//                    System.out.println("Invalid Command. Exception thrown.");
+//                    throw new IllegalArgumentException();
+//                }
             }
             catch(IllegalAccessException e){
                 System.out.println("IllegalAccessException thrown");

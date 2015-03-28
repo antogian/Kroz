@@ -42,12 +42,10 @@ public class LOOK implements ICommand {
     }
 
     @Override
-    public boolean isValid() {
+    public void isValid() {
         if (!this.currentCommandTextList.isEmpty()) {
             System.out.println("Command LOOK doesnt get any parameters. Try: [LOOK]");
-            return false;
-        } else {
-            return true;
+            throw new IllegalArgumentException();
         }
     }
 }

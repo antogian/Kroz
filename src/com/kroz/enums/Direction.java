@@ -30,4 +30,14 @@ public enum Direction {
     public String getValue(){
         return this.name;
     }
+    
+    public static Direction extractDirection(String directionString) {
+        Direction direction = Direction.DEFAULT;
+        for (Direction temp : Direction.values()) {
+            if (temp.getValue().equalsIgnoreCase(directionString)) {
+                direction = temp;
+            }                
+        }
+        return direction;
+    } 
 }

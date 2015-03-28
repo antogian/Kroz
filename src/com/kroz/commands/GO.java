@@ -37,8 +37,8 @@ public class GO implements ICommand {
     private void initialize() {
         this.toDirection = Direction.DEFAULT;
         this.currentPlayer = new Player();
-        this.map = currentPlayer.getCurrentScenario().getScenarioMap();
-        currentCommandTextList = new ArrayList<String>();
+        this.map = new Map();
+        this.currentCommandTextList = new ArrayList<String>();
     }
 
     public Player getCurrentPlayer() {
@@ -56,6 +56,9 @@ public class GO implements ICommand {
 
     @Override
     public void executeCommand() {
+        //TODO call extractDirection
+        isValid(); //throws exception if the command is not valid.
+        setToDirection();
         if (this.isDirectionValid(this.currentPlayer.getPlayerCurrentScene())) {
             try {
                 SceneExit exitToGoTo = extractCurrentSceneExit(this.currentPlayer.getPlayerCurrentScene());
@@ -90,6 +93,7 @@ public class GO implements ICommand {
     @Override
     public void setCurrentPlayer(Player currentPlayer) {
         this.currentPlayer = currentPlayer;
+        this.map = currentPlayer.getCurrentScenario().getScenarioMap();
     }
 
     @Override
@@ -98,12 +102,18 @@ public class GO implements ICommand {
     }
 
     @Override
-    public boolean isValid() {
+    public void isValid() {
         if (this.currentCommandTextList.size() != 1) {
            System.out.println("Command GO takes one parameter. Try: [GO parameter]");
-           return false;
-        } else {
-            return true;
+           throw new IllegalArgumentException();
         }
+    }
+
+    public Direction getToDirection() {
+        return toDirection;
+    }
+
+    public void setToDirection() {
+        this.toDirection = Direction.extractDirection(this.currentCommandTextList.get(0));
     }
 }
