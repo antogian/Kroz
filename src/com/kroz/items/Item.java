@@ -8,42 +8,42 @@ import com.kroz.enums.ItemState;
 * @author Immortuon
 */
 abstract public class Item {
-   String name;
-   String itemDescription;
-   ItemType type;
-   ItemState state;
+   protected String itemName;
+   protected String itemDescription;
+   protected ItemType itemType;
+   protected ItemState itemState;
    
-   public Item(String name, String itemDescription, ItemType type, ItemState state)
+   public Item(String newItemName, String newItemDescription, ItemType newItemType, ItemState newItemState)
    {
-       this.name = name;
-       this.itemDescription = itemDescription;
-       this.type = ItemType.SCENE_OBJECT;
-       this.state = ItemState.DISABLED;
+       this.itemName = newItemName;
+       this.itemDescription = newItemDescription;
+       this.itemType = ItemType.SCENE_OBJECT;
+       this.itemState = ItemState.DISABLED;
    }
-   public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getItemDescription() {
-		return itemDescription;
-	}
-	public void setItemDescription(String itemDescription) {
-		this.itemDescription = itemDescription;
-	}
-	public ItemType getType() {
-		return type;
-	}
-	public void setType(ItemType type) {
-		this.type = type;
-	}
-	public ItemState getState() {
-		return state;
-	}
-	public void setState(ItemState state) {
-		this.state = state;
-	}
-	abstract public void useItem();  
-	}
-   
+    public String getItemName() {
+        return itemName;
+    }
+    public void setItemName(String newItemName) {
+        this.itemName = newItemName;
+    }
+    public String getItemDescription() {
+        return itemDescription;
+    }
+    public void setItemDescription(String newItemDescription) {
+        this.itemDescription = newItemDescription;
+    }
+    public ItemType getItemType() {
+        return itemType;
+    }
+    public void setItemType(ItemType newItemType) {
+        this.itemType = newItemType;
+    }
+    public ItemState getItemState() {
+        return itemState;
+    }
+    public void setItemState(ItemState newItemState) {
+        this.itemState = newItemState;
+    }
+    abstract public void useItem();
+}
+
