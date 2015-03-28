@@ -5,6 +5,7 @@
  */
 package com.kroz.player;
 
+import com.kroz.inventory.Inventory;
 import com.kroz.scenario.DefaultScenario;
 import com.kroz.scenario.IScenario;
 import com.kroz.scene.Scene;
@@ -18,6 +19,7 @@ public class Player {
     private String playerName;
     private Scene playerCurrentScene;
     private IScenario playerCurrentScenario;
+    private Inventory playerInventory;
 
     public Player() {
         initialize();
@@ -29,14 +31,16 @@ public class Player {
         this.playerName = playerName;
         this.playerCurrentScene = new Scene("Default Scene Desctiption.");
         this.playerCurrentScenario = scenario;
+        this.playerInventory = new Inventory();
     }
     /*
     * Initializing attributes with default values.
     */
     private void initialize() {
-        playerName = "Default Player";
-        playerCurrentScene = new Scene("Default Scene Desctiption.");
+        this.playerName = "Default Player";
+        this.playerCurrentScene = new Scene("Default Scene Desctiption.");
         this.playerCurrentScenario = new DefaultScenario();
+        this.playerInventory = new Inventory();
     }
     /**
     *Sets the player's name.
@@ -49,8 +53,7 @@ public class Player {
         System.out.println("Enter player name: ");
         String temp = scanner.nextLine();
         while (temp.startsWith(" ") || temp.isEmpty()) {
-            System.out.println("Invalid Name.");
-            System.out.println("Enter player name: ");
+            System.out.println("Invalid Name. Enter player name: ");
             temp = scanner.nextLine();
         }
         this.playerName = temp;
@@ -89,4 +92,9 @@ public class Player {
     public Scene getPlayerCurrentScene() {
         return this.playerCurrentScene;
     }
+
+    public Inventory getPlayerInventory() {
+        return playerInventory;
+    }
+
 }

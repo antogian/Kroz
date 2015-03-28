@@ -5,8 +5,11 @@
  */
 package com.kroz.scene;
 
+import com.kroz.inventory.Inventory;
+
 public class Scene {
     private String sceneDescription;
+    private Inventory sceneInventory;
 
     public Scene() {
         initialize();
@@ -17,6 +20,7 @@ public class Scene {
      */
     private void initialize() {
         sceneDescription = "Default Scene Description.";
+        sceneInventory = new Inventory();
     }
 
     /**
@@ -25,9 +29,19 @@ public class Scene {
      */
     public Scene(String newSceneDescription) {
         this.sceneDescription = newSceneDescription;
+        sceneInventory = new Inventory();
+    }
+
+    public void setSceneDescription(String newSceneDescription) {
+        this.sceneDescription = newSceneDescription;
     }
 
     public String getSceneDescription() {
         return sceneDescription;
     }
+
+    public Inventory getSceneInventory() {
+        return sceneInventory;
+    }
+
 }
