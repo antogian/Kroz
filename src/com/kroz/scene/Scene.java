@@ -6,6 +6,7 @@
 package com.kroz.scene;
 
 import com.kroz.inventory.Inventory;
+import java.util.EmptyStackException;
 
 public class Scene {
     private String sceneDescription;
@@ -44,4 +45,12 @@ public class Scene {
         return sceneInventory;
     }
 
+    public void showSceneInventory() {
+        try {
+            this.getSceneInventory().showInventory();
+        } catch (EmptyStackException e) {
+            //if there are no available items for the scene
+            //there is no reason to print a message.
+        }
+    }
 }

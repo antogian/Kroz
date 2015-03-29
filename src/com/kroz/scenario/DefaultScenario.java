@@ -11,6 +11,9 @@ import com.kroz.scene.SceneExit;
 import java.util.ArrayList;
 import java.util.List;
 import com.kroz.enums.Direction;
+import com.kroz.items.Door;
+import com.kroz.items.Key;
+import com.kroz.items.Torch;
 
 
 public class DefaultScenario implements IScenario {
@@ -78,6 +81,9 @@ public class DefaultScenario implements IScenario {
     public final void setScenarioSceneList() {
         Scene newScene;
         newScene = new Scene("You are in a forest. West there is a garden.");
+        newScene.getSceneInventory().addItemInInventory(new Door());
+        newScene.getSceneInventory().addItemInInventory(new Torch());
+        newScene.getSceneInventory().addItemInInventory(new Key());
         this.defaultScenarioSceneList.add(newScene);
         newScene = new Scene("You are in a kitchen. West there is a door leading to a room.");
         this.defaultScenarioSceneList.add(newScene);
