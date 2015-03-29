@@ -47,11 +47,11 @@ public class GO implements ICommand {
     
     /**
      * Checks if the direction is available in the current scene.
-     * @param currentScene The current scene the player is in.
+     * @param newCurrentScene The current scene the player is in.
      * @return True if the direction is available. False if it isn't.
      */
-    public boolean isDirectionValid(Scene currentScene) {
-        return currentMap.canGoThere(currentScene, directionToGoTo);
+    public boolean isDirectionValid(Scene newCurrentScene) {
+        return currentMap.canGoThere(newCurrentScene, directionToGoTo);
     }
 
     @Override
@@ -91,14 +91,14 @@ public class GO implements ICommand {
     }
 
     @Override
-    public void setCurrentPlayer(Player currentPlayer) {
-        this.currentPlayer = currentPlayer;
-        this.currentMap = currentPlayer.getPlayerCurrentScenario().getScenarioMap();
+    public void setCurrentPlayer(Player newCurrentPlayer) {
+        this.currentPlayer = newCurrentPlayer;
+        this.currentMap = newCurrentPlayer.getPlayerCurrentScenario().getScenarioMap();
     }
 
     @Override
-    public void setCommandTextList(List<String> rawCommandText) {
-        this.currentCommandTextList = rawCommandText;
+    public void setCommandTextList(List<String> newRawCommandText) {
+        this.currentCommandTextList = newRawCommandText;
     }
 
     @Override

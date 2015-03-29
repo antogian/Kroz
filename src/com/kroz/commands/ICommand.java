@@ -17,8 +17,8 @@ public interface ICommand {
      * Executes the ICommand object that was created.
      */
     void executeCommand();
-    void setCurrentPlayer(Player currentPlayer);
-    public void setCommandTextList(List<String> rawCommandText);
+    void setCurrentPlayer(Player newCurrentPlayer);
+    public void setCommandTextList(List<String> newRawCommandText);
 
     public void isValid();
 }

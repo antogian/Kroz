@@ -14,6 +14,7 @@ import java.util.List;
  * @author Eleni Aidonidou
  */
 public class EXIT implements ICommand {
+    private Player currentPlayer;
     private List<String> currentCommandTextList;
 
     public EXIT() {
@@ -25,17 +26,18 @@ public class EXIT implements ICommand {
     }
     @Override
     public void executeCommand() {
+        isValid();
         System.exit(0);
     }
 
     @Override
-    public void setCurrentPlayer(Player currentPlayer) {
-        
+    public void setCurrentPlayer(Player newCurrentPlayer) {
+        this.currentPlayer = newCurrentPlayer;
     }
 
     @Override
-    public void setCommandTextList(List<String> rawCommandText) {
-        this.currentCommandTextList = rawCommandText;
+    public void setCommandTextList(List<String> newRawCommandText) {
+        this.currentCommandTextList = newRawCommandText;
     }
 
     @Override
