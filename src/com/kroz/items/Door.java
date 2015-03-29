@@ -9,8 +9,8 @@ import com.kroz.enums.ItemState;
 */
 public class Door extends Item {
 
-    public Door(String newItemName, String newItemDescription, ItemType newItemType, ItemState newItemState) {
-        super(newItemName, newItemDescription, newItemType, newItemState);
+    public Door() {
+        super("Door", "a door", ItemType.SCENE_OBJECT, ItemState.ENABLED);
     }
 
     /**

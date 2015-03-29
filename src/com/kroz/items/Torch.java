@@ -9,8 +9,8 @@ import com.kroz.enums.ItemState;
 */
 public class Torch extends Item {
 
-    public Torch(String newItemName, String newItemDescription, ItemType newItemType, ItemState newItemState) {
-        super(newItemName, newItemDescription, newItemType, newItemState);
+    public Torch() {
+        super("Torch", "an unused torch", ItemType.PLAYER_OBJECT, ItemState.DISABLED);
     }
     /**
      * Implementation of the abstract method of the Item superclass.
