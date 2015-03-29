@@ -45,11 +45,11 @@ public class DROP implements ICommand{
         this.currentCommandTextList = rawCommandText;
     }
     
-//    public String modifyCommand(String str){
-//        str.toLowerCase();
-//        str = Character.toString(str.charAt(0)).toUpperCase() + str.substring(1);
-//        return str;
-//    }
+    public String modifyCommandText(String str){
+        str.toLowerCase();
+        str = Character.toString(str.charAt(0)).toUpperCase() + str.substring(1);
+        return str;
+    }
     
     public void isValid(){
         if(this.currentCommandTextList.size() != 1){
@@ -59,11 +59,27 @@ public class DROP implements ICommand{
     }
     
     
-//    public void createItem(){
-//        if (this.itemsMap.containsKey(this.currentCommandTextList.get(0))){
-//            this.currentItem = itemsMap.get(this.currentCommandTextList.get(0).toUpperCase().newInstance()); //TODO Only first letter needs to be upper case
-//        }
-//    }
+    public void createItem(){
+        String str = this.modifyCommandText(this.currentCommandTextList.get(0));
+        if (this.itemsMap.containsKey(str)){
+            try{
+                //this.currentItem = this.itemsMap.get(this.currentCommandTextList.get(0)).newInstance();
+                this.currentItem = this.itemsMap.get(str).newInstance();
+            }
+            catch (IllegalAccessException e){
+                e.getMessage();
+            }
+            catch (InstantiationException e) {
+                e.getMessage();
+            }
+            catch (ExceptionInInitializerError e) {
+                e.getMessage();
+            }
+            catch (SecurityException e) {
+                e.getMessage();
+            }
+        }
+    }
     
     public boolean itemExists(){
         
@@ -76,11 +92,11 @@ public class DROP implements ICommand{
     }
     
     public void executeCommand(){
-        isValid();
-        //createItem();
-        if (itemExists()){
-            getItemFromPlayer();
-            addItemToScene();
+        this.isValid();
+        this.createItem();
+        if (this.itemExists()){
+            this.getItemFromPlayer();
+            this.addItemToScene();
             System.out.println("Item dropped");
         }
         else{
