@@ -28,23 +28,25 @@ public class LOOK implements ICommand {
     }
     @Override
     public void executeCommand() {
+        isValid();
         System.out.println("\n" + currentPlayer.getPlayerCurrentScene().getSceneDescription());
+        this.currentPlayer.getPlayerCurrentScene().showSceneInventory();
     }
 
     @Override
-    public void setCurrentPlayer(Player currentPlayer) {
-        this.currentPlayer = currentPlayer;
+    public void setCurrentPlayer(Player newCurrentPlayer) {
+        this.currentPlayer = newCurrentPlayer;
     }
 
     @Override
-    public void setCommandTextList(List<String> rawCommandText) {
-        this.currentCommandTextList = rawCommandText;
+    public void setCommandTextList(List<String> newRawCommandText) {
+        this.currentCommandTextList = newRawCommandText;
     }
 
     @Override
     public void isValid() {
         if (!this.currentCommandTextList.isEmpty()) {
-            System.out.println("Command LOOK doesnt get any parameters. Try: [LOOK]");
+            System.out.println("Command LOOK doesn't get any parameters. Try: [LOOK]");
             throw new IllegalArgumentException();
         }
     }

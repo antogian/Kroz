@@ -7,6 +7,7 @@ package com.kroz.inventory;
 
 import com.kroz.items.Item;
 import java.util.ArrayList;
+import java.util.EmptyStackException;
 import java.util.List;
 
 /**
@@ -33,8 +34,13 @@ public class Inventory {
     }
 
     public void showInventory() {
-        for (Item temp : itemList) {
-            System.out.println(temp.getItemName());
+        if (this.itemList.isEmpty()) {
+            throw new EmptyStackException();
+        } else {
+            System.out.println("There is: ");
+            for (Item temp : itemList) {
+                System.out.println(temp.getItemDescription());
+            }
         }
     }
 

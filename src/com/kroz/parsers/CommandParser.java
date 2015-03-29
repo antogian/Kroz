@@ -8,6 +8,7 @@ package com.kroz.parsers;
 import com.kroz.commands.EXIT;
 import com.kroz.commands.GO;
 import com.kroz.commands.ICommand;
+import com.kroz.commands.INVENTORY;
 import com.kroz.commands.LOOK;
 import com.kroz.player.Player;
 import java.util.ArrayList;
@@ -37,6 +38,7 @@ public class CommandParser {
         this.commandsMap.put("GO", GO.class);
         this.commandsMap.put("LOOK", LOOK.class);
         this.commandsMap.put("EXIT", EXIT.class);
+        this.commandsMap.put("INVENTORY", INVENTORY.class);
     }
     /**
      * @param rawCommandString is the input string as the user typed it.

@@ -6,6 +6,7 @@
 package com.kroz.player;
 
 import com.kroz.inventory.Inventory;
+import com.kroz.items.Item;
 import com.kroz.scenario.DefaultScenario;
 import com.kroz.scenario.IScenario;
 import com.kroz.scene.Scene;
@@ -97,4 +98,7 @@ public class Player {
         return playerInventory;
     }
 
+    public void addToPlayerInventory(Item newItem) {
+        this.playerInventory.addItemInInventory(newItem);
+    }
 }
