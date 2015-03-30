@@ -9,9 +9,7 @@ import com.kroz.items.Item;
 import com.kroz.items.Torch;
 import com.kroz.player.Player;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  *
@@ -21,18 +19,16 @@ public class DROP implements ICommand{
     private Player currentPlayer;
     private List<String> currentCommandTextList;
     private Item currentItem;
-    private Map<String, Class<? extends Item>> itemsMap;
    
     public DROP(){
         this.initialize();
     }
     public void initialize(){
         this.currentPlayer = new Player();
-        this.currentCommandTextList = new ArrayList<String>();
-        this.itemsMap = new HashMap<String, Class<? extends Item>>();
-        this.itemsMap.put("Torch", Torch.class);
+        this.currentCommandTextList = new ArrayList<>();
     }
     
+    @Override
     public void setCurrentPlayer(Player currentPlayer){
         this.currentPlayer = currentPlayer;
     }
@@ -41,16 +37,12 @@ public class DROP implements ICommand{
         this.currentItem = currentItem;
     }
     
+    @Override
     public void setCommandTextList(List<String> rawCommandText){
         this.currentCommandTextList = rawCommandText;
     }
     
-    public String modifyCommandText(String str){
-        str.toLowerCase();
-        str = Character.toString(str.charAt(0)).toUpperCase() + str.substring(1);
-        return str;
-    }
-    
+    @Override
     public void isValid(){
         if(this.currentCommandTextList.size() != 1){
             System.out.println("Command DROP takes one parameter. Try: [TAKE parameter]");
@@ -58,49 +50,26 @@ public class DROP implements ICommand{
         }
     }
     
-    
-    public void createItem(){
-        String str = this.modifyCommandText(this.currentCommandTextList.get(0));
-        if (this.itemsMap.containsKey(str)){
-            try{
-                //this.currentItem = this.itemsMap.get(this.currentCommandTextList.get(0)).newInstance();
-                this.currentItem = this.itemsMap.get(str).newInstance();
-            }
-            catch (IllegalAccessException e){
-                e.getMessage();
-            }
-            catch (InstantiationException e) {
-                e.getMessage();
-            }
-            catch (ExceptionInInitializerError e) {
-                e.getMessage();
-            }
-            catch (SecurityException e) {
-                e.getMessage();
-            }
-        }
-    }
-    
     public boolean itemExists(){
-        
         for(Item tempItem : this.currentPlayer.getPlayerInventory().getItemList()){
             if (tempItem.getItemName().equalsIgnoreCase(this.currentCommandTextList.get(0))){
+                this.setCurrentItem(tempItem);
                 return true;
             }
         }
         return false;
     }
     
+    @Override
     public void executeCommand(){
         this.isValid();
-        this.createItem();
         if (this.itemExists()){
             this.getItemFromPlayer();
             this.addItemToScene();
-            System.out.println("Item dropped");
+            System.out.println(this.currentItem.getItemName() + " removed from INVENTORY");
         }
         else{
-            System.out.println("Item doesn't exist");
+            System.out.println(this.currentItem.getItemName() + " doesn't exist");
         }
     }
      

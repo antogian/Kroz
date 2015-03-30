@@ -8,10 +8,9 @@ package com.kroz.commands;
 import com.kroz.player.Player;
 import com.kroz.items.Item;
 import com.kroz.items.Torch;
+import com.kroz.enums.ItemType;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 /**
  *
  * @author Tony
@@ -21,18 +20,17 @@ public class TAKE implements ICommand{
     private Player currentPlayer;
     private List<String> currentCommandTextList;
     private Item currentItem;
-    private Map<String, Class<? extends Item>> itemsMap;
    
     public TAKE(){
         this.initialize();
     }
+    
     public void initialize(){
         this.currentPlayer = new Player();
-        this.currentCommandTextList = new ArrayList<String>();
-        this.itemsMap = new HashMap<String, Class<? extends Item>>();
-        this.itemsMap.put("Torch", Torch.class);
+        this.currentCommandTextList = new ArrayList<>();
     }
     
+    @Override
     public void setCurrentPlayer(Player currentPlayer){
         this.currentPlayer = currentPlayer;
     }
@@ -41,16 +39,12 @@ public class TAKE implements ICommand{
         this.currentItem = currentItem;
     }
     
+    @Override
     public void setCommandTextList(List<String> rawCommandText){
         this.currentCommandTextList = rawCommandText;
     }
     
-    public String modifyCommandText(String str){
-        str.toLowerCase();
-        str = Character.toString(str.charAt(0)).toUpperCase() + str.substring(1);
-        return str;
-    }
-    
+    @Override
     public void isValid(){
         if(this.currentCommandTextList.size() != 1){
             System.out.println("Command TAKE takes one parameter. Try: [TAKE parameter]");
@@ -58,49 +52,36 @@ public class TAKE implements ICommand{
         }
     }
     
-    
-    public void createItem(){
-        String str = this.modifyCommandText(this.currentCommandTextList.get(0));
-        if (this.itemsMap.containsKey(str)){
-            try{
-                //this.currentItem = this.itemsMap.get(this.currentCommandTextList.get(0)).newInstance();
-                this.currentItem = this.itemsMap.get(str).newInstance();
-            }
-            catch (IllegalAccessException e){
-                e.getMessage();
-            }
-            catch (InstantiationException e) {
-                e.getMessage();
-            }
-            catch (ExceptionInInitializerError e) {
-                e.getMessage();
-            }
-            catch (SecurityException e) {
-                e.getMessage();
-            }
-        }
-    }
-    
     public boolean itemExists(){
         
         for(Item tempItem : this.currentPlayer.getPlayerCurrentScene().getSceneInventory().getItemList()){
             if (tempItem.getItemName().equalsIgnoreCase(this.currentCommandTextList.get(0))){
+                setCurrentItem(tempItem);
                 return true;
             }
         }
         return false;
     }
     
+    public boolean isPlayerObject(){
+        return this.currentItem.getItemType().getValue().equalsIgnoreCase("PO");
+    }
+    
+    @Override
     public void executeCommand(){
         this.isValid();
-        this.createItem();
         if (this.itemExists()){
-            this.getItemFromScene();
-            this.addItemToPlayer();
-            System.out.println("Item taken");
+            if (this.isPlayerObject()){
+                this.getItemFromScene();
+                this.addItemToPlayer();
+                System.out.println(this.currentItem.getItemName() + " added to INVENTORY");
+            }
+            else{
+                System.out.println("You can't TAKE this");
+            }
         }
         else{
-            System.out.println("Item doesn't exist");
+            System.out.println(this.currentItem.getItemName() + " doesn't exist");
         }
     }
      
