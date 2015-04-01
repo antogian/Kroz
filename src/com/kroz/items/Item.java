@@ -21,7 +21,7 @@ abstract public class Item {
        this.itemState = ItemState.DISABLED;
    }
     public String getItemName() {
-        return itemName;
+        return itemName.toUpperCase();
     }
     public void setItemName(String newItemName) {
         this.itemName = newItemName;
@@ -44,6 +44,6 @@ abstract public class Item {
     public void setItemState(ItemState newItemState) {
         this.itemState = newItemState;
     }
-    abstract public void useItem();
+    abstract public void changeItemState();
 }
 

@@ -17,7 +17,7 @@ public class Key extends Item {
         super("Key", "a key that unlocks a door", ItemType.PLAYER_OBJECT, ItemState.DISABLED);
     }
     @Override
-    public void useItem() {
+    public void changeItemState() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

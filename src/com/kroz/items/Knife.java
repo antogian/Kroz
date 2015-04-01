@@ -7,20 +7,20 @@ import com.kroz.enums.ItemState;
 *
 * @author Immortuon
 */
-public class Door extends Item {
+public class Knife extends Item {
 
-    public Door() {
-        super("Door", "a door", ItemType.SCENE_OBJECT, ItemState.ENABLED);
+    public Knife() {
+        super("Knife", "a sharpened knife", ItemType.PLAYER_OBJECT, ItemState.DISABLED);
     }
 
     /**
      * Implementation of the abstract method of the Item superclass.
      */
     @Override
-    public void changeItemState() {
+    public void useItem() {
         if (itemState == ItemState.DISABLED) {
             itemState = ItemState.ENABLED;
         }
-        System.out.println("The sound of rust pierces through your ears as the door opens...");
+        System.out.println("A drop of blood runs from your thumb as you touch the sharpened edge...");
     }
 }

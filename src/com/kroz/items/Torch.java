@@ -16,7 +16,7 @@ public class Torch extends Item {
      * Implementation of the abstract method of the Item superclass.
      */
     @Override
-    public void useItem() {
+    public void changeItemState() {
         if (itemState == ItemState.DISABLED) {
             itemState = ItemState.ENABLED;
         }
