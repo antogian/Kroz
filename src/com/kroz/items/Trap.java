@@ -19,12 +19,14 @@ public class Trap extends Item {
     public Trap() {
         super("Trap", "a hidden trap", ItemType.SCENE_OBJECT, ItemState.ENABLED);
     }
-
+    public void useItem(){
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
     /**
      * Implementation of the abstract method of the Item superclass.
      */
     @Override
-    public void useItem() {
+    public void changeItemState() {
         if (itemState == ItemState.DISABLED) {
             itemState = ItemState.ENABLED;
         }

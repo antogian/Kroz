@@ -18,11 +18,14 @@ public class Leaflet extends Item {
     public Leaflet() {
         super("Leaflet", "an unread leaflet", ItemType.SCENE_OBJECT, ItemState.DISABLED);
     }
+    public void useItem(){
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
     /**
      * Implementation of the abstract method of the Item superclass.
      */
     @Override
-    public void useItem() {
+    public void changeItemState() {
         if (itemState == ItemState.DISABLED) {
             itemState = ItemState.ENABLED;
         }

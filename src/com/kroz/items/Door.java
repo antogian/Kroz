@@ -12,6 +12,9 @@ public class Door extends Item {
     public Door() {
         super("Door", "a door", ItemType.SCENE_OBJECT, ItemState.ENABLED);
     }
+    public void useItem(){
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
     /**
      * Implementation of the abstract method of the Item superclass.
