@@ -34,7 +34,7 @@ public class CLOSE implements ICommand{
         this.isValid();
         if (this.itemExists()) {
             if (this.isItemOpen()) {
-                this.currentItem.useItem();
+                this.currentItem.changeItemState();
                 System.out.println(this.currentItem.getItemName() + " closed");
             }
             else {

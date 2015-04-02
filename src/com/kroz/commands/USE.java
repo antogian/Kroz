@@ -34,7 +34,7 @@ public class USE implements ICommand{
     public void executeCommand(){
         this.isValid();
         if (this.itemExists()) {
-                this.currentItem.useItem();
+                this.currentItem.changeItemState();
         }
         else {
             System.out.println(this.currentItem.getItemName() + " doesn't exist");

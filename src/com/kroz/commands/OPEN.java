@@ -37,7 +37,7 @@ public class OPEN implements ICommand{
                 System.out.println(this.currentItem.getItemName() + " is already open");
             }
             else {
-                this.currentItem.useItem();
+                this.currentItem.changeItemState();
                 System.out.println(this.currentItem.getItemName() + " opened");
             }
         }
