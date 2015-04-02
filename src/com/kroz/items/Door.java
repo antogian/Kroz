@@ -10,7 +10,7 @@ import com.kroz.enums.ItemState;
 public class Door extends Item {
 
     public Door() {
-        super("Door", "a door", ItemType.SCENE_OBJECT, ItemState.ENABLED);
+        super("Door", "a door", ItemType.SCENE_OBJECT, ItemState.DEFAULT);
     }
     public void useItem(){
         throw new UnsupportedOperationException("Not supported yet.");
