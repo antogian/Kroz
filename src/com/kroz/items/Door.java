@@ -24,6 +24,8 @@ public class Door extends Item {
         if (itemState == ItemState.DISABLED) {
             itemState = ItemState.ENABLED;
         }
-        System.out.println("The sound of rust pierces through your ears as the door opens...");
+        else if (itemState == ItemState.ENABLED){
+            itemState = ItemState.DISABLED;
+        }
     }
 }

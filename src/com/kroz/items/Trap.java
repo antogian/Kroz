@@ -30,6 +30,8 @@ public class Trap extends Item {
         if (itemState == ItemState.DISABLED) {
             itemState = ItemState.ENABLED;
         }
-        System.out.println("A rattle from beneath sends a shiver down your spine...");
+        else if (itemState == ItemState.ENABLED){
+            itemState = ItemState.DISABLED;
+        }
     }
 }

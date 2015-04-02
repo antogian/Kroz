@@ -29,7 +29,9 @@ public class Leaflet extends Item {
         if (itemState == ItemState.DISABLED) {
             itemState = ItemState.ENABLED;
         }
-        System.out.println("You cannot contain your fear as you read through this damned leaflet. Why is this happening to me?");
+        else if (itemState == ItemState.ENABLED){
+            itemState = ItemState.DISABLED;
+        }
     }
 }
 

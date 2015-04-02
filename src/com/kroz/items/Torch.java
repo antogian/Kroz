@@ -23,6 +23,8 @@ public class Torch extends Item {
         if (itemState == ItemState.DISABLED) {
             itemState = ItemState.ENABLED;
         }
-        System.out.println("Light up the Darkness!");
+        else if (itemState == ItemState.ENABLED){
+            itemState = ItemState.DISABLED;
+        }
     }
 }

@@ -6,6 +6,7 @@ package com.kroz.enums;
 */
 
 public enum ItemState {
+   DEFAULT("DEFAULT"),
    ENABLED("ON"), 
    DISABLED("OFF");
    

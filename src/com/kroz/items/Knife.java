@@ -23,6 +23,8 @@ public class Knife extends Item {
         if (itemState == ItemState.DISABLED) {
             itemState = ItemState.ENABLED;
         }
-        System.out.println("A drop of blood runs from your thumb as you touch the sharpened edge...");
+        else if (itemState == ItemState.ENABLED){
+            itemState = ItemState.DISABLED;
+        }
     }
 }
