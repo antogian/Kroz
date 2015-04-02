@@ -7,10 +7,13 @@ package com.kroz.scene;
 
 
 import com.kroz.enums.Direction;
+import com.kroz.enums.ItemState;
+import com.kroz.items.Door;
 
 public class SceneExit {
     private Direction direction;
     private Scene destinationScene;
+    private Door sceneDoor;
 
     public SceneExit() {
         initialize();
@@ -22,6 +25,7 @@ public class SceneExit {
     private void initialize() {
         this.direction = Direction.DEFAULT;
         this.destinationScene = new Scene("Default Scene Description.");
+        this.sceneDoor = new Door();
     }
 
     /**
@@ -32,6 +36,15 @@ public class SceneExit {
     public SceneExit(Direction newDirection, Scene newDestinationScene) {
         this.direction = newDirection;
         this.destinationScene = newDestinationScene;
+        this.sceneDoor = new Door();
+    }
+    
+    public SceneExit(Direction newDirection, Scene newDestinationScene, ItemState itemState) {
+        this.direction = newDirection;
+        this.destinationScene = newDestinationScene;
+        this.sceneDoor = new Door();
+        this.sceneDoor.setItemState(itemState);
+        this.destinationScene.getSceneInventory().addItemInInventory(sceneDoor);
     }
 
     public Direction getDirection() {
@@ -40,5 +53,9 @@ public class SceneExit {
 
     public Scene getDestinationScene() {
         return destinationScene;
+    }
+    
+    public Door getSceneDoor(){
+        return this.sceneDoor;
     }
 }
