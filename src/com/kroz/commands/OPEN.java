@@ -42,7 +42,7 @@ public class OPEN implements ICommand{
             }
         }
         else {
-            System.out.println(this.currentItem.getItemName() + "doesn't exist");
+            System.out.println(this.currentItem.getItemName() + " doesn't exist");
         }
     }
     
