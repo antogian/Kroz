@@ -5,11 +5,17 @@
  */
 package com.kroz.parsers;
 
+import com.kroz.commands.CLOSE;
+import com.kroz.commands.DROP;
+import com.kroz.commands.EXAMINE;
 import com.kroz.commands.EXIT;
 import com.kroz.commands.GO;
 import com.kroz.commands.ICommand;
 import com.kroz.commands.INVENTORY;
 import com.kroz.commands.LOOK;
+import com.kroz.commands.OPEN;
+import com.kroz.commands.TAKE;
+import com.kroz.commands.USE;
 import com.kroz.player.Player;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -39,6 +45,12 @@ public class CommandParser {
         this.commandsMap.put("LOOK", LOOK.class);
         this.commandsMap.put("EXIT", EXIT.class);
         this.commandsMap.put("INVENTORY", INVENTORY.class);
+        this.commandsMap.put("OPEN", OPEN.class);
+        this.commandsMap.put("CLOSE", CLOSE.class);
+        this.commandsMap.put("TAKE", TAKE.class);
+        this.commandsMap.put("DROP", DROP.class);
+        this.commandsMap.put("EXAMINE", EXAMINE.class);
+        this.commandsMap.put("USE", USE.class);
     }
     /**
      * @param rawCommandString is the input string as the user typed it.

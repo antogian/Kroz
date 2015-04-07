@@ -10,7 +10,7 @@ import com.kroz.enums.ItemState;
 public class Door extends Item {
 
     public Door() {
-        super("Door", "a door", ItemType.SCENE_OBJECT, ItemState.ENABLED);
+        super("Door", "a door", ItemType.SCENE_OBJECT, ItemState.DEFAULT);
     }
     public void useItem(){
         throw new UnsupportedOperationException("Not supported yet.");
@@ -24,6 +24,8 @@ public class Door extends Item {
         if (itemState == ItemState.DISABLED) {
             itemState = ItemState.ENABLED;
         }
-        System.out.println("The sound of rust pierces through your ears as the door opens...");
+        else if (itemState == ItemState.ENABLED){
+            itemState = ItemState.DISABLED;
+        }
     }
 }

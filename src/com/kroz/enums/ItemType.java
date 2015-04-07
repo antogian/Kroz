@@ -5,6 +5,7 @@ package com.kroz.enums;
 * @author Immortuon
 */
 public enum ItemType {
+  DEFAULT("DEFAULT"),
   SCENE_OBJECT("SO"), 
   PLAYER_OBJECT("PO"); 
   

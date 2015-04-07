@@ -17,8 +17,8 @@ abstract public class Item {
    {
        this.itemName = newItemName;
        this.itemDescription = newItemDescription;
-       this.itemType = ItemType.SCENE_OBJECT;
-       this.itemState = ItemState.DISABLED;
+       this.setItemType(newItemType);
+       this.setItemState(newItemState);
    }
     public String getItemName() {
         return itemName.toUpperCase();

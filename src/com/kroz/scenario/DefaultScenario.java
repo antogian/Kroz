@@ -11,6 +11,7 @@ import com.kroz.scene.SceneExit;
 import java.util.ArrayList;
 import java.util.List;
 import com.kroz.enums.Direction;
+import com.kroz.enums.ItemState;
 import com.kroz.items.Door;
 import com.kroz.items.Key;
 import com.kroz.items.Torch;
@@ -64,17 +65,17 @@ public class DefaultScenario implements IScenario {
         this.defaultScenarioMap.addExitToScene(this.getScenarioSceneList().get(2),
                 new SceneExit(Direction.E, this.getScenarioSceneList().get(0)));
         this.defaultScenarioMap.addExitToScene(this.getScenarioSceneList().get(2),
-                new SceneExit(Direction.S, this.getScenarioSceneList().get(3)));
+                new SceneExit(Direction.S, this.getScenarioSceneList().get(3), ItemState.ENABLED));
         this.defaultScenarioMap.addExitToScene(this.getScenarioSceneList().get(3),
-                new SceneExit(Direction.E, this.getScenarioSceneList().get(1)));
+                new SceneExit(Direction.E, this.getScenarioSceneList().get(1), ItemState.DISABLED));
         this.defaultScenarioMap.addExitToScene(this.getScenarioSceneList().get(3),
-                new SceneExit(Direction.S, this.getScenarioSceneList().get(4)));
+                new SceneExit(Direction.S, this.getScenarioSceneList().get(4), ItemState.DISABLED));
         this.defaultScenarioMap.addExitToScene(this.getScenarioSceneList().get(3),
-                new SceneExit(Direction.N, this.getScenarioSceneList().get(2)));
+                new SceneExit(Direction.N, this.getScenarioSceneList().get(2), ItemState.ENABLED));
         this.defaultScenarioMap.addExitToScene(this.getScenarioSceneList().get(1),
                 new SceneExit(Direction.W, this.getScenarioSceneList().get(3)));
         this.defaultScenarioMap.addExitToScene(this.getScenarioSceneList().get(4),
-                new SceneExit(Direction.N, this.getScenarioSceneList().get(3)));
+                new SceneExit(Direction.N, this.getScenarioSceneList().get(3), ItemState.ENABLED));
     }
     /**
      *Setting of the default scenario scenes.
@@ -88,6 +89,7 @@ public class DefaultScenario implements IScenario {
         newScene.getSceneInventory().addItemInInventory(new Key());
         this.defaultScenarioSceneList.add(newScene);
         newScene = new Scene("You are in a kitchen. West there is a door leading to a room.");
+        newScene.getSceneInventory().addItemInInventory(new Door());
         this.defaultScenarioSceneList.add(newScene);
         newScene = new Scene("You are in a garden. East there is a forest."
                 + " South there is a house. The door is open.");
