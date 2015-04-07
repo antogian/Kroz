@@ -19,23 +19,26 @@ import com.kroz.items.Torch;
 public class DefaultScenario implements IScenario {
     private List<Scene> defaultScenarioSceneList;
     private Map defaultScenarioMap;
+    private Boolean scenarioComplete;
 
     public DefaultScenario() {
         initialize();
         this.setScenarioSceneList();
         this.setScenarioMap();
+        this.scenarioComplete = false;
     }
 /**
  * Initializes the attributes of a new Scenario object.
  */
     private void initialize() {
-        defaultScenarioMap = new Map();
-        defaultScenarioSceneList = new ArrayList<Scene>();
+        this.defaultScenarioMap = new Map();
+        this.defaultScenarioSceneList = new ArrayList<Scene>();
+        this.scenarioComplete = false;
     }
 
     @Override
     public Map getScenarioMap() {
-        return defaultScenarioMap;
+        return this.defaultScenarioMap;
     }
 
     @Override
@@ -48,8 +51,7 @@ public class DefaultScenario implements IScenario {
      */
     @Override
     public boolean isScenarioComplete() {
-        return false;
-    //TODO right code that defines when the scenario is complete.
+        return this.scenarioComplete;
     }
 
     /**
@@ -97,4 +99,9 @@ public class DefaultScenario implements IScenario {
         newScene = new Scene("You are in a basement. North there is a staircase leading upwards.");
         this.defaultScenarioSceneList.add(newScene);
     }
+
+    public void setScenarioComplete(Boolean scenarioComplete) {
+        this.scenarioComplete = scenarioComplete;
+    }
+
 }
