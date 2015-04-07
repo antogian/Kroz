@@ -11,6 +11,7 @@ import java.util.EmptyStackException;
 public class Scene {
     private String sceneDescription;
     private Inventory sceneInventory;
+    private Integer numberOfExits;
 
     public Scene() {
         initialize();
@@ -20,8 +21,9 @@ public class Scene {
      * Initializes the attributes of a new Scene object.
      */
     private void initialize() {
-        sceneDescription = "Default Scene Description.";
-        sceneInventory = new Inventory();
+        this.sceneDescription = "Default Scene Description.";
+        this.sceneInventory = new Inventory();
+        this.numberOfExits = 0;
     }
 
     /**
@@ -30,7 +32,13 @@ public class Scene {
      */
     public Scene(String newSceneDescription) {
         this.sceneDescription = newSceneDescription;
-        sceneInventory = new Inventory();
+        this.sceneInventory = new Inventory();
+    }
+    
+    public Scene(String newSceneDescription, Integer newNumberOfExits) {
+        this.sceneDescription = newSceneDescription;
+        this.sceneInventory = new Inventory();
+        this.numberOfExits = newNumberOfExits;
     }
 
     public void setSceneDescription(String newSceneDescription) {
@@ -38,12 +46,21 @@ public class Scene {
     }
 
     public String getSceneDescription() {
-        return sceneDescription;
+        return this.sceneDescription;
     }
 
     public Inventory getSceneInventory() {
-        return sceneInventory;
+        return this.sceneInventory;
     }
+
+    public Integer getNumberOfExits() {
+        return this.numberOfExits;
+    }
+
+    public void setNumberOfExits(Integer numberOfExits) {
+        this.numberOfExits = numberOfExits;
+    }
+    
 
     public void showSceneInventory() {
         try {
