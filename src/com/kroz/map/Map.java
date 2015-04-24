@@ -66,16 +66,7 @@ public class Map {
         boolean canGo = false;
         for (SceneExit tempExit : this.map.get(keyScene)) {
             if (tempExit.getDirection().getValue().equalsIgnoreCase(direction.getValue())) {
-                if (tempExit.getSceneDoor().getItemState().getValue().equalsIgnoreCase("DEFAULT")){
                     canGo = true;
-                }
-                if (tempExit.getSceneDoor().getItemState().getValue().equalsIgnoreCase("ON")){
-                    canGo = true;
-                }
-                if (tempExit.getSceneDoor().getItemState().getValue().equalsIgnoreCase("OFF")){
-                    System.out.println("You must open the door");
-                    canGo = false;
-                }
             }
         }
         return canGo;
