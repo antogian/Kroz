@@ -62,6 +62,13 @@ public class GO implements ICommand {
         if (this.isDirectionValid(this.currentPlayer.getPlayerCurrentScene())) {
             try {
                 SceneExit exitToGoTo = extractCurrentSceneExit(this.currentPlayer.getPlayerCurrentScene());
+                if (!this.isExitClear(exitToGoTo)){
+                    System.out.println("You must open the door!");
+                    return;
+                }
+                else{
+                    this.currentPlayer.setPlayerCurrentScene(exitToGoTo.getDestinationScene());
+                }
                 this.currentPlayer.setPlayerCurrentScene(exitToGoTo.getDestinationScene());
             } catch (NoSuchFieldException e) {
                 System.out.println("You can't go that way.");
@@ -107,6 +114,14 @@ public class GO implements ICommand {
            System.out.println("Command GO takes one parameter. Try: [GO parameter]");
            throw new IllegalArgumentException();
         }
+    }
+    
+    public boolean isExitClear(SceneExit exit){
+        boolean exitClear = true;
+        if(exit.getSceneDoor().getItemState().getValue().equals("OFF")){
+            exitClear = false;
+        }
+        return exitClear;
     }
 
     public Direction getDirectionToGoTo() {
