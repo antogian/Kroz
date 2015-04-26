@@ -69,7 +69,6 @@ public class GO implements ICommand {
                 else{
                     this.currentPlayer.setPlayerCurrentScene(exitToGoTo.getDestinationScene());
                 }
-                this.currentPlayer.setPlayerCurrentScene(exitToGoTo.getDestinationScene());
             } catch (NoSuchFieldException e) {
                 System.out.println("You can't go that way.");
             }
