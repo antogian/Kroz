@@ -71,4 +71,8 @@ public class Map {
         }
         return canGo;
     }
+    
+    public List<SceneExit> sceneExits(Scene someScene){
+        return this.map.get(someScene);
+    }
 }
