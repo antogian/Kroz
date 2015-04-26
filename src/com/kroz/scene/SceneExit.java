@@ -44,7 +44,7 @@ public class SceneExit {
         this.destinationScene = newDestinationScene;
         this.sceneDoor = new Door();
         this.sceneDoor.setItemState(itemState);
-        this.destinationScene.getSceneInventory().addItemInInventory(sceneDoor);
+        //this.destinationScene.getSceneInventory().addItemInInventory(sceneDoor);
     }
 
     public Direction getDirection() {
