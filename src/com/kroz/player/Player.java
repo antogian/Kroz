@@ -93,6 +93,10 @@ public class Player {
     public Scene getPlayerCurrentScene() {
         return this.playerCurrentScene;
     }
+    
+    public void setPlayerInventory(Inventory newPlayerInventory){
+        this.playerInventory = newPlayerInventory;
+    }
 
     public Inventory getPlayerInventory() {
         return playerInventory;
@@ -100,5 +104,13 @@ public class Player {
 
     public void addToPlayerInventory(Item newItem) {
         this.playerInventory.addItemInInventory(newItem);
+    }
+    
+    public void setRawPlayerName(String newPlayerName){
+        this.playerName = newPlayerName;
+    }
+    
+    public String getRawPlayerName(){
+        return this.playerName;
     }
 }
