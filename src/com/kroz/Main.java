@@ -24,7 +24,7 @@ public class Main {
      */
     public static void main(final String[] args) {
         IScenario scenario = new DefaultScenario();
-        Player player = new Player("The Player!", scenario);
+        Player player = new Player("ThePlayer", scenario);
         ConsoleInputParser consoleInputParser = new ConsoleInputParser();
         CommandParser commandParser = new CommandParser();
         ICommand currentCommand;
