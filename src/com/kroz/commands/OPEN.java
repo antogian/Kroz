@@ -80,7 +80,7 @@ public class OPEN implements ICommand{
         List <SceneExit> exitsList = new ArrayList<SceneExit>();
         exitsList = this.currentPlayer.getPlayerCurrentScenario().getScenarioMap().sceneExits(this.currentPlayer.getPlayerCurrentScene());
         for(SceneExit tempSceneExit : exitsList){
-            if (!tempSceneExit.getSceneDoor().getItemState().getValue().equals("DEAFAULT")){
+            if (!tempSceneExit.getSceneDoor().getItemState().getValue().equals("DEFAULT")){
                 setCurrentItem(tempSceneExit.getSceneDoor());
                 return true;
             }
