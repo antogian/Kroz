@@ -14,6 +14,9 @@ import com.kroz.commands.ICommand;
 import com.kroz.commands.INVENTORY;
 import com.kroz.commands.LOOK;
 import com.kroz.commands.OPEN;
+import com.kroz.commands.RESTART;
+import com.kroz.commands.RESTORE;
+import com.kroz.commands.SAVE;
 import com.kroz.commands.TAKE;
 import com.kroz.commands.USE;
 import com.kroz.player.Player;
@@ -51,6 +54,9 @@ public class CommandParser {
         this.commandsMap.put("DROP", DROP.class);
         this.commandsMap.put("EXAMINE", EXAMINE.class);
         this.commandsMap.put("USE", USE.class);
+        this.commandsMap.put("SAVE", SAVE.class);
+        this.commandsMap.put("RESTORE", RESTORE.class);
+        this.commandsMap.put("RESTART", RESTART.class);
     }
     /**
      * @param rawCommandString is the input string as the user typed it.
