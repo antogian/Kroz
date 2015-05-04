@@ -59,4 +59,8 @@ public class Inventory {
     public boolean itemExists (Item newItem) {
         return this.itemList.contains(newItem);
     }
+    
+    public void clearInventory(){
+        this.itemList.clear();
+    }
 }
