@@ -13,6 +13,7 @@ import com.kroz.commands.GO;
 import com.kroz.commands.ICommand;
 import com.kroz.commands.INVENTORY;
 import com.kroz.commands.LOOK;
+import com.kroz.commands.NEW;
 import com.kroz.commands.OPEN;
 import com.kroz.commands.RESTART;
 import com.kroz.commands.RESTORE;
@@ -57,6 +58,7 @@ public class CommandParser {
         this.commandsMap.put("SAVE", SAVE.class);
         this.commandsMap.put("RESTORE", RESTORE.class);
         this.commandsMap.put("RESTART", RESTART.class);
+        this.commandsMap.put("NEW", NEW.class);
     }
     /**
      * @param rawCommandString is the input string as the user typed it.
@@ -98,9 +100,6 @@ public class CommandParser {
                 newCommand = commandsMap.get(this.rawCommandText.get(0).toUpperCase()).newInstance();
                 rawCommandText.remove(0); //removes the part of the text that defines the type of command
                 newCommand.setCommandTextList(rawCommandText);
-                if (newCommand.isValid() == false) {
-                    throw new IllegalArgumentException();
-                }
                 newCommand.setCurrentPlayer(player);
             } catch (IllegalAccessException e) {
                 System.out.println("IllegalAccessException thrown");
@@ -113,6 +112,10 @@ public class CommandParser {
             }
         } else {
             System.out.println("I don't understand that.");
+            throw new IllegalArgumentException();
+        }
+        if (newCommand.isValid() == false) {
+            System.out.println(newCommand.getInvalidInputMessage());
             throw new IllegalArgumentException();
         }
         return newCommand;
