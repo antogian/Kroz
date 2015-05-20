@@ -108,11 +108,8 @@ public class GO implements ICommand {
     }
 
     @Override
-    public void isValid() {
-        if (this.currentCommandTextList.size() != 1) {
-           System.out.println("Command GO takes one parameter. Try: [GO parameter]");
-           throw new IllegalArgumentException();
-        }
+    public boolean isValid() {
+        return this.currentCommandTextList.size() == 1;
     }
     
     public boolean isExitClear(SceneExit exit){
@@ -129,5 +126,10 @@ public class GO implements ICommand {
 
     public void setToDirection() {
         this.directionToGoTo = Direction.extractDirection(this.currentCommandTextList.get(0));
+    }
+
+    @Override
+    public String getInvalidInputMessage() {
+        return "Command GO takes one parameter. Try: [GO parameter]";
     }
 }

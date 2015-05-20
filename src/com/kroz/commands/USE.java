@@ -56,11 +56,8 @@ public class USE implements ICommand{
     }
     
     @Override
-    public void isValid(){
-        if (this.currentCommandTextList.size() != 1) {
-           System.out.println("Command USE takes one parameter. Try: [USE parameter]");
-           throw new IllegalArgumentException();
-        }
+    public boolean isValid(){
+        return this.currentCommandTextList.size() == 1;
     }
     
     public boolean itemExists(){
@@ -71,5 +68,10 @@ public class USE implements ICommand{
             }
         }
         return false;
+    }
+
+    @Override
+    public String getInvalidInputMessage() {
+        return "Command USE takes one parameter. Try: [USE parameter]";
     }
 }

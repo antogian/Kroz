@@ -20,7 +20,6 @@ public class OPEN implements ICommand{
     private List<String> currentCommandTextList;
     private Item currentItem;
     
-    
     public OPEN(){
         this.initialize();
     }
@@ -62,11 +61,8 @@ public class OPEN implements ICommand{
     }
     
     @Override
-    public void isValid(){
-        if (this.currentCommandTextList.size() != 1) {
-           System.out.println("Command OPEN takes one parameter. Try: [OPEN parameter]");
-           throw new IllegalArgumentException();
-        }
+    public boolean isValid(){
+        return this.currentCommandTextList.size() == 1;
     }
     
     public boolean itemExists(){
@@ -90,6 +86,11 @@ public class OPEN implements ICommand{
     
     public boolean isItemOpen(){
         return this.currentItem.getItemState().getValue().equalsIgnoreCase("ON");
+    }
+
+    @Override
+    public String getInvalidInputMessage() {
+        return "Command OPEN takes one parameter. Try: [OPEN parameter]";
     }
     
 }

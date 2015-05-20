@@ -6,7 +6,6 @@
 package com.kroz.commands;
 
 import com.kroz.items.Item;
-import com.kroz.items.Torch;
 import com.kroz.player.Player;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,11 +42,8 @@ public class DROP implements ICommand{
     }
     
     @Override
-    public void isValid(){
-        if(this.currentCommandTextList.size() != 1){
-            System.out.println("Command DROP takes one parameter. Try: [TAKE parameter]");
-            throw new IllegalArgumentException();
-        }
+    public boolean isValid(){
+        return this.currentCommandTextList.size() == 1;
     }
     
     public boolean itemExists(){
@@ -79,5 +75,10 @@ public class DROP implements ICommand{
     
     public void addItemToScene(){
         this.currentPlayer.getPlayerCurrentScene().getSceneInventory().addItemInInventory(this.currentItem);
+    }
+
+    @Override
+    public String getInvalidInputMessage() {
+        return "Command DROP takes one parameter. Try: [DROP parameter]";
     }
 }

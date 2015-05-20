@@ -55,11 +55,8 @@ public class RESTORE implements ICommand{
     }
 
     @Override
-    public void isValid(){
-        if(this.currentCommandTextList.size() != 1){
-            System.out.println("Command RESTORE takes one parameter. Try: [RESTORE PlayerName]");
-            throw new IllegalArgumentException();
-        }
+    public boolean isValid(){
+        return this.currentCommandTextList.size() == 1;
     }
     
     public void assignNewPlayer(Player newPlayer){
@@ -71,5 +68,10 @@ public class RESTORE implements ICommand{
     
     public Player getCurrentPlayer(){
         return this.currentPlayer;
+    }
+
+    @Override
+    public String getInvalidInputMessage() {
+        return "Command RESTORE takes one parameter. Try: [RESTORE PlayerName]";
     }
 }

@@ -5,7 +5,6 @@
  */
 package com.kroz.commands;
 
-import com.kroz.enums.Direction;
 import com.kroz.map.Map;
 import com.kroz.player.Player;
 import java.util.ArrayList;
@@ -49,10 +48,12 @@ public class NEW implements ICommand {
     }
 
     @Override
-    public void isValid() {
-        if (this.currentCommandTextList.size() != 1) {
-           System.out.println("Command NEW takes one parameter. Try: [NEW scenarioName]");
-           throw new IllegalArgumentException();
-        }
+    public boolean isValid() {
+        return this.currentCommandTextList.size() == 1;
+    }
+
+    @Override
+    public String getInvalidInputMessage() {
+        return "Command NEW takes one parameter. Try: [NEW parameter]";
     }
 }

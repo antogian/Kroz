@@ -56,11 +56,8 @@ public class EXAMINE implements ICommand{
     }
     
     @Override
-    public void isValid(){
-        if (this.currentCommandTextList.size() != 1) {
-           System.out.println("Command EXAMINE takes one parameter. Try: [EXAMINE parameter]");
-           throw new IllegalArgumentException();
-        }
+    public boolean isValid(){
+        return this.currentCommandTextList.size() == 1;
     }
     
     public boolean itemExists(){
@@ -71,6 +68,11 @@ public class EXAMINE implements ICommand{
             }
         }
         return false;
+    }
+
+    @Override
+    public String getInvalidInputMessage() {
+        return "Command EXAMINE takes one parameter. Try: [EXAMINE parameter]";
     }
     
 }

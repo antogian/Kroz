@@ -7,8 +7,6 @@ package com.kroz.commands;
 
 import com.kroz.player.Player;
 import com.kroz.items.Item;
-import com.kroz.items.Torch;
-import com.kroz.enums.ItemType;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -45,11 +43,8 @@ public class TAKE implements ICommand{
     }
     
     @Override
-    public void isValid(){
-        if(this.currentCommandTextList.size() != 1){
-            System.out.println("Command TAKE takes one parameter. Try: [TAKE parameter]");
-            throw new IllegalArgumentException();
-        }
+    public boolean isValid(){
+        return this.currentCommandTextList.size() == 1;
     }
     
     public boolean itemExists(){
@@ -91,5 +86,10 @@ public class TAKE implements ICommand{
     
     public void addItemToPlayer(){
         this.currentPlayer.getPlayerInventory().addItemInInventory(this.currentItem);
+    }
+
+    @Override
+    public String getInvalidInputMessage() {
+        return "Command TAKE takes one parameter. Try: [TAKE parameter]";
     }
 }

@@ -19,6 +19,6 @@ public interface ICommand {
     void executeCommand();
     void setCurrentPlayer(Player newCurrentPlayer);
     public void setCommandTextList(List<String> newRawCommandText);
-
-    public void isValid();
+    public boolean isValid();
+    public String getInvalidInputMessage();
 }

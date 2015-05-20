@@ -18,8 +18,7 @@ public class CLOSE implements ICommand{
     private Player currentPlayer;
     private List<String> currentCommandTextList;
     private Item currentItem;
-    
-    
+
     public CLOSE(){
         this.initialize();
     }
@@ -28,7 +27,7 @@ public class CLOSE implements ICommand{
         this.currentPlayer = new Player();
         this.currentCommandTextList = new ArrayList<>();
     }
-    
+
     @Override
     public void executeCommand(){
         this.isValid();
@@ -61,11 +60,8 @@ public class CLOSE implements ICommand{
     }
     
     @Override
-    public void isValid(){
-        if (this.currentCommandTextList.size() != 1) {
-           System.out.println("Command OPEN takes one parameter. Try: [CLOSE parameter]");
-           throw new IllegalArgumentException();
-        }
+    public boolean isValid(){
+        return this.currentCommandTextList.size() == 1;
     }
     
     public boolean itemExists(){
@@ -80,5 +76,10 @@ public class CLOSE implements ICommand{
     
     public boolean isItemOpen(){
         return this.currentItem.getItemState().getValue().equalsIgnoreCase("ON");
+    }
+
+    @Override
+    public String getInvalidInputMessage() {
+        return "Command CLOSE takes one parameter. Try: [CLOSE parameter]";
     }
 }

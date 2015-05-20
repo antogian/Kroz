@@ -33,7 +33,6 @@ public class INVENTORY implements ICommand{
         } catch (EmptyStackException e) {
             System.out.println("You have no items.");
         }
-
     }
 
     @Override
@@ -47,11 +46,13 @@ public class INVENTORY implements ICommand{
     }
 
     @Override
-    public void isValid() {
-        if (!this.currentCommandTextList.isEmpty()) {
-            System.out.println("Command INVENTORY doesn't get any parameters. Try: [INVENTORY]");
-            throw new IllegalArgumentException();
-        }
+    public boolean isValid() {
+        return this.currentCommandTextList.isEmpty();
+    }
+
+    @Override
+    public String getInvalidInputMessage() {
+        return "Command INVENTORY doesn't get any parameters. Try: [INVENTORY]";
     }
     
 }

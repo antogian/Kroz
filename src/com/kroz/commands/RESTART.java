@@ -48,14 +48,16 @@ public class RESTART implements ICommand{
     }
 
     @Override
-    public void isValid(){
-        if (!this.currentCommandTextList.isEmpty()) {
-           System.out.println("Command RESTART doesnt get any parameters. Try: [RESTART]");
-           throw new IllegalArgumentException();
-        }
+    public boolean isValid(){
+        return this.currentCommandTextList.isEmpty();
     }
     
     public Player getCurrentPlayer(){
         return this.currentPlayer;
+    }
+
+    @Override
+    public String getInvalidInputMessage() {
+        return "Command RESTART doesnt get any parameters. Try: [RESTART]";
     }
 }

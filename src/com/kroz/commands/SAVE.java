@@ -54,11 +54,13 @@ public class SAVE implements ICommand{
     }
 
     @Override
-    public void isValid(){
-        if (!this.currentCommandTextList.isEmpty()) {
-           System.out.println("Command SAVE doesnt get any parameters. Try: [SAVE]");
-           throw new IllegalArgumentException();
-        }
+    public boolean isValid(){
+        return this.currentCommandTextList.isEmpty();
+    }
+
+    @Override
+    public String getInvalidInputMessage() {
+        return "Command SAVE doesnt get any parameters. Try: [SAVE]";
     }
     
 }

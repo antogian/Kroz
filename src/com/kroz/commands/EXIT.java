@@ -41,10 +41,12 @@ public class EXIT implements ICommand {
     }
 
     @Override
-    public void isValid() {
-        if (!this.currentCommandTextList.isEmpty()) {
-           System.out.println("Command EXIT doesnt get any parameters. Try: [EXIT]");
-           throw new IllegalArgumentException();
-        }
+    public boolean isValid() {
+        return this.currentCommandTextList.isEmpty();
+    }
+
+    @Override
+    public String getInvalidInputMessage() {
+        return "Command EXIT doesnt get any parameters. Try: [EXIT]";
     }
 }
