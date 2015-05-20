@@ -58,7 +58,6 @@ public class DROP implements ICommand{
     
     @Override
     public void executeCommand(){
-        this.isValid();
         if (this.itemExists()){
             this.getItemFromPlayer();
             this.addItemToScene();

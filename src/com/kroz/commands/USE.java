@@ -32,7 +32,6 @@ public class USE implements ICommand{
     
     @Override
     public void executeCommand(){
-        this.isValid();
         if (this.itemExists()) {
                 this.currentItem.changeItemState();
         }

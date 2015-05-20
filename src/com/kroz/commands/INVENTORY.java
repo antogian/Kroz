@@ -27,7 +27,6 @@ public class INVENTORY implements ICommand{
     }
     @Override
     public void executeCommand() {
-        isValid();
         try {
             this.currentPlayer.getPlayerInventory().showInventory();
         } catch (EmptyStackException e) {

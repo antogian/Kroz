@@ -33,7 +33,6 @@ public class NEW implements ICommand {
         }
     @Override
     public void executeCommand() {
-        isValid(); //throws exception if the command is not valid.
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

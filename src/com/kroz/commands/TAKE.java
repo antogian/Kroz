@@ -64,7 +64,6 @@ public class TAKE implements ICommand{
     
     @Override
     public void executeCommand(){
-        this.isValid();
         if (this.itemExists()){
             if (this.isPlayerObject()){
                 this.getItemFromScene();

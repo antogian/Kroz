@@ -30,7 +30,6 @@ public class CLOSE implements ICommand{
 
     @Override
     public void executeCommand(){
-        this.isValid();
         if (this.itemExists()) {
             if (this.isItemOpen()) {
                 this.currentItem.changeItemState();

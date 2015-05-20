@@ -26,7 +26,6 @@ public class EXIT implements ICommand {
     }
     @Override
     public void executeCommand() {
-        isValid();
         System.exit(0);
     }
 

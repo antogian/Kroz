@@ -32,7 +32,6 @@ public class EXAMINE implements ICommand{
     
     @Override
     public void executeCommand(){
-        this.isValid();
         if (this.itemExists()) {
                 System.out.println(this.currentItem.getItemDescription());
         }

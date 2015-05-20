@@ -57,7 +57,6 @@ public class GO implements ICommand {
     @Override
     public void executeCommand() {
         //TODO call extractDirection
-        isValid(); //throws exception if the command is not valid.
         setToDirection();
         if (this.isDirectionValid(this.currentPlayer.getPlayerCurrentScene())) {
             try {

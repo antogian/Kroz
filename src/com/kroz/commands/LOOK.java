@@ -28,7 +28,6 @@ public class LOOK implements ICommand {
     }
     @Override
     public void executeCommand() {
-        isValid();
         System.out.println("\n" + currentPlayer.getPlayerCurrentScene().getSceneDescription());
         this.currentPlayer.getPlayerCurrentScene().showSceneInventory();
     }

@@ -31,7 +31,6 @@ public class OPEN implements ICommand{
     
     @Override
     public void executeCommand(){
-        this.isValid();
         if (this.itemExists()) {
             if (this.isItemOpen()) {
                 System.out.println(this.currentItem.getItemName() + " is already open");
