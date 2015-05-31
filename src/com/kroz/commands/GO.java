@@ -58,23 +58,31 @@ public class GO implements ICommand {
     public void executeCommand() {
         //TODO call extractDirection
         setToDirection();
-        if (this.isDirectionValid(this.currentPlayer.getPlayerCurrentScene())) {
-            try {
-                SceneExit exitToGoTo = extractCurrentSceneExit(this.currentPlayer.getPlayerCurrentScene());
-                if (!this.isExitClear(exitToGoTo)){
-                    System.out.println("You must open the door!");
-                    return;
+        if (this.isValid()){
+            if (this.isDirectionValid(this.currentPlayer.getPlayerCurrentScene())) {
+                try {
+                    SceneExit exitToGoTo = extractCurrentSceneExit(this.currentPlayer.getPlayerCurrentScene());
+                    if (!this.isExitClear(exitToGoTo)){
+                        System.out.println("You must open the door.");
+                        return;
+                    }
+                    else{
+                        this.currentPlayer.setPlayerCurrentScene(exitToGoTo.getDestinationScene());
+                    }
+                } 
+                catch (NoSuchFieldException e) {
+                    System.out.println("You can't go that way.");
                 }
-                else{
-                    this.currentPlayer.setPlayerCurrentScene(exitToGoTo.getDestinationScene());
-                }
-            } catch (NoSuchFieldException e) {
-                System.out.println("You can't go that way.");
+            } 
+            else {
+                System.out.println("Direction doesn't exist");
             }
-        } else {
-            System.out.println("Direction doesn't exist");
-        }
         System.out.println("\n" + this.currentPlayer.getPlayerCurrentScene().getSceneDescription());
+        }
+        else {
+            this.getInvalidInputMessage();
+        }
+
     }
     /**
      * Extracts the Current Scenes Exit where the direction equals the direction given by the player.

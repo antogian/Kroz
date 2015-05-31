@@ -5,6 +5,7 @@
  */
 package com.kroz.commands;
 
+import com.kroz.items.Door;
 import com.kroz.items.Item;
 import com.kroz.player.Player;
 import com.kroz.scene.SceneExit;
@@ -16,9 +17,12 @@ import java.util.List;
  * @author Tony
  */
 public class OPEN implements ICommand{
+    
     private Player currentPlayer;
     private List<String> currentCommandTextList;
-    private Item currentItem;
+    private Door currentItem;
+    private static List<Item> openableItems = new ArrayList<>();
+    
     
     public OPEN(){
         this.initialize();
@@ -31,18 +35,34 @@ public class OPEN implements ICommand{
     
     @Override
     public void executeCommand(){
-        if (this.itemExists()) {
-            if (this.isItemOpen()) {
-                System.out.println(this.currentItem.getItemName() + " is already open");
+        if(this.isValid()){
+            if (this.itemExists()) {
+                if (this.isItemOpenable()){
+                    if (this.isItemOpen()) {
+                        System.out.println(this.currentItem.getItemName() + " is already open.");
+                    }
+                    else {
+                        if (this.isItemLocked()) {
+                            System.out.println(this.currentItem.getItemName() + " is locked.");
+                        }
+                        else {
+                            this.currentItem.changeItemState();
+                            System.out.println(this.currentItem.getItemName() + " opened.");
+                        }
+                    }
+                }
+                else {
+                    System.out.println("You can't do that.");
+                }
             }
             else {
-                this.currentItem.changeItemState();
-                System.out.println(this.currentItem.getItemName() + " opened");
+                System.out.println(this.currentCommandTextList.toString().toUpperCase() + " doesn't exist.");
             }
         }
-        else {
-            System.out.println(this.currentItem.getItemName() + " doesn't exist");
+        else{
+            this.getInvalidInputMessage();
         }
+
     }
     
     @Override
@@ -56,7 +76,7 @@ public class OPEN implements ICommand{
     }
     
     public void setCurrentItem(Item item){
-        this.currentItem = item;
+        this.currentItem = (Door)item;
     }
     
     @Override
@@ -71,13 +91,14 @@ public class OPEN implements ICommand{
                 return true;
             }
         }
-        
         List <SceneExit> exitsList = new ArrayList<SceneExit>();
-        exitsList = this.currentPlayer.getPlayerCurrentScenario().getScenarioMap().sceneExits(this.currentPlayer.getPlayerCurrentScene());
+        exitsList = this.currentPlayer.getPlayerCurrentScenario().getScenarioMap().getSceneExits(this.currentPlayer.getPlayerCurrentScene());
         for(SceneExit tempSceneExit : exitsList){
             if (!tempSceneExit.getSceneDoor().getItemState().getValue().equals("DEFAULT")){
-                setCurrentItem(tempSceneExit.getSceneDoor());
-                return true;
+                if (tempSceneExit.getSceneDoor().getItemName().equalsIgnoreCase(this.currentCommandTextList.get(0))){
+                    setCurrentItem(tempSceneExit.getSceneDoor());
+                    return true;
+                }
             }
         }
         return false;
@@ -86,10 +107,21 @@ public class OPEN implements ICommand{
     public boolean isItemOpen(){
         return this.currentItem.getItemState().getValue().equalsIgnoreCase("ON");
     }
+    
+    public boolean isItemLocked(){
+        return this.currentItem.isItemLocked();
+    }
 
     @Override
     public String getInvalidInputMessage() {
         return "Command OPEN takes one parameter. Try: [OPEN parameter]";
     }
     
+    public static void addOpenableItem(Item newItem){
+        openableItems.add(newItem);
+    }
+    
+    public boolean isItemOpenable(){
+        return openableItems.contains(this.currentItem);
+    }
 }

@@ -31,16 +31,22 @@ public class SAVE implements ICommand{
     
     @Override
     public void executeCommand(){
-        String filename = this.currentPlayer.getRawPlayerName() + ".xml";
-        try{
-            XMLEncoder encoder = new XMLEncoder(new BufferedOutputStream(new FileOutputStream(filename)));
-            encoder.writeObject(this.currentPlayer);
-            encoder.close();
-            System.out.println("Game saved");
+        if (this.isValid()){
+            String filename = this.currentPlayer.getRawPlayerName() + ".xml";
+            try{
+                XMLEncoder encoder = new XMLEncoder(new BufferedOutputStream(new FileOutputStream(filename)));
+                encoder.writeObject(this.currentPlayer);
+                encoder.close();
+                System.out.println("Game saved.");
+            }
+            catch(Exception e){
+                System.out.println("Exception caught.");
+            }
         }
-        catch(Exception e){
-            System.out.println("Exception caught");
+        else {
+            this.getInvalidInputMessage();
         }
+
     }
     
     @Override

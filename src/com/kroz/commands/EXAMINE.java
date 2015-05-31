@@ -32,11 +32,16 @@ public class EXAMINE implements ICommand{
     
     @Override
     public void executeCommand(){
-        if (this.itemExists()) {
+        if (this.isValid()){
+            if (this.itemExists()) {
                 System.out.println(this.currentItem.getItemDescription());
+            }
+            else {
+                System.out.println(this.currentItem.getItemName() + " doesn't exist");
+            }
         }
         else {
-            System.out.println(this.currentItem.getItemName() + " doesn't exist");
+            this.getInvalidInputMessage();
         }
     }
     

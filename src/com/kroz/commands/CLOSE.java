@@ -7,6 +7,7 @@ package com.kroz.commands;
 
 import com.kroz.items.Item;
 import com.kroz.player.Player;
+import com.kroz.scene.SceneExit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,7 @@ public class CLOSE implements ICommand{
     private Player currentPlayer;
     private List<String> currentCommandTextList;
     private Item currentItem;
+    private static List<Item> closeableItems = new ArrayList<>();
 
     public CLOSE(){
         this.initialize();
@@ -30,17 +32,27 @@ public class CLOSE implements ICommand{
 
     @Override
     public void executeCommand(){
-        if (this.itemExists()) {
-            if (this.isItemOpen()) {
-                this.currentItem.changeItemState();
-                System.out.println(this.currentItem.getItemName() + " closed");
+        if(this.isValid()){
+            if (this.itemExists()) {
+                if (this.isItemCloseable()){
+                    if (this.isItemOpen()) {
+                        this.currentItem.changeItemState();
+                        System.out.println(this.currentItem.getItemName() + " closed");
+                    }
+                    else {
+                        System.out.println(this.currentItem.getItemName() + " is already closed");
+                    }
+                }
+                else {
+                    System.out.println("You can't do that.");
+                }
             }
             else {
-                 System.out.println(this.currentItem.getItemName() + " is already closed");
+                System.out.println(this.currentCommandTextList.toString().toUpperCase() + " doesn't exist");
             }
         }
-        else {
-            System.out.println(this.currentItem.getItemName() + "doesn't exist");
+        else{
+            this.getInvalidInputMessage();
         }
     }
     
@@ -70,6 +82,16 @@ public class CLOSE implements ICommand{
                 return true;
             }
         }
+        List <SceneExit> exitsList = new ArrayList<SceneExit>();
+        exitsList = this.currentPlayer.getPlayerCurrentScenario().getScenarioMap().getSceneExits(this.currentPlayer.getPlayerCurrentScene());
+        for(SceneExit tempSceneExit : exitsList){
+            if (!tempSceneExit.getSceneDoor().getItemState().getValue().equals("DEFAULT")){
+                if (tempSceneExit.getSceneDoor().getItemName().equalsIgnoreCase(this.currentCommandTextList.get(0))){
+                    setCurrentItem(tempSceneExit.getSceneDoor());
+                    return true;
+                }
+            }
+        }
         return false;
     }
     
@@ -80,5 +102,13 @@ public class CLOSE implements ICommand{
     @Override
     public String getInvalidInputMessage() {
         return "Command CLOSE takes one parameter. Try: [CLOSE parameter]";
+    }
+    
+    public static void addCloseableItem(Item newItem){
+        closeableItems.add(newItem);
+    }
+    
+    public boolean isItemCloseable(){
+        return closeableItems.contains(this.currentItem);
     }
 }

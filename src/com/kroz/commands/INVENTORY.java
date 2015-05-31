@@ -27,10 +27,15 @@ public class INVENTORY implements ICommand{
     }
     @Override
     public void executeCommand() {
-        try {
-            this.currentPlayer.getPlayerInventory().showInventory();
-        } catch (EmptyStackException e) {
-            System.out.println("You have no items.");
+        if (this.isValid()){
+            try {
+                this.currentPlayer.getPlayerInventory().showInventory();
+            } catch (EmptyStackException e) {
+                System.out.println("You have no items.");
+            }
+        }
+        else {
+            this.getInvalidInputMessage();
         }
     }
 

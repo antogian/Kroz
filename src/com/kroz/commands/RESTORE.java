@@ -31,16 +31,21 @@ public class RESTORE implements ICommand{
     
     @Override
     public void executeCommand(){
-        String filename = this.currentCommandTextList.get(0) + ".xml";
-        try{
-            XMLDecoder decoder = new XMLDecoder(new BufferedInputStream(new FileInputStream(filename)));
-            Player newPlayer = (Player)decoder.readObject();
-            decoder.close();
-            this.assignNewPlayer(newPlayer);
-            System.out.println("Game restored");
+        if (this.isValid()){
+            String filename = this.currentCommandTextList.get(0) + ".xml";
+            try {
+                XMLDecoder decoder = new XMLDecoder(new BufferedInputStream(new FileInputStream(filename)));
+                Player newPlayer = (Player)decoder.readObject();
+                decoder.close();
+                this.assignNewPlayer(newPlayer);
+                System.out.println("Game restored");
+            }
+            catch(Exception e){
+                System.out.println("Exception caught");
+            }
         }
-        catch(Exception e){
-            System.out.println("Exception caught");
+        else {
+            this.getInvalidInputMessage();
         }
     }
     

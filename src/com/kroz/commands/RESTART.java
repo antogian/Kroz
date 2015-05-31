@@ -33,8 +33,13 @@ public class RESTART implements ICommand{
     
     @Override
     public void executeCommand(){
-        this.currentPlayer.setPlayerCurrentScene(scenario.getScenarioSceneList().get(0));
-        this.currentPlayer.getPlayerInventory().clearInventory();
+        if (this.isValid()){
+            this.currentPlayer.setPlayerCurrentScene(scenario.getScenarioSceneList().get(0));
+            this.currentPlayer.getPlayerInventory().clearInventory();
+        }
+        else {
+            this.getInvalidInputMessage();
+        }
     }
     
     @Override

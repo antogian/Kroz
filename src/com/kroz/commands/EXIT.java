@@ -26,7 +26,13 @@ public class EXIT implements ICommand {
     }
     @Override
     public void executeCommand() {
-        System.exit(0);
+        if (this.isValid()){
+            System.exit(0);            
+        }
+        else {
+            this.getInvalidInputMessage();
+        }
+
     }
 
     @Override
