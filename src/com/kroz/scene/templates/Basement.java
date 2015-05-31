@@ -14,7 +14,7 @@ import com.kroz.scene.Scene;
 public class Basement extends Scene {
 
     public Basement() {
-        super("You are in a Basement.", 1);
+        super("You are in a basement. North there is a staircase leading upwards.", 1);
     }
 
 }

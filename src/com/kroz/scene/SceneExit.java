@@ -39,11 +39,12 @@ public class SceneExit {
         this.sceneDoor = new Door();
     }
     
-    public SceneExit(Direction newDirection, Scene newDestinationScene, ItemState itemState) {
+    public SceneExit(Direction newDirection, Scene newDestinationScene, ItemState doorState, ItemState lockState) {
         this.direction = newDirection;
         this.destinationScene = newDestinationScene;
         this.sceneDoor = new Door();
-        this.sceneDoor.setItemState(itemState);
+        this.sceneDoor.setItemState(doorState);
+        this.sceneDoor.setLockState(lockState);
         //this.destinationScene.getSceneInventory().addItemInInventory(sceneDoor);
     }
 

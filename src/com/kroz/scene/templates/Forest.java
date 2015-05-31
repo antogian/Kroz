@@ -14,7 +14,7 @@ import com.kroz.scene.Scene;
 public class Forest extends Scene{
 
     public Forest() {
-        super("You are in a Forest.", 2);
+        super("You are in a forest. West there is a garden.", 2);
     }
 
 }
