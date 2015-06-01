@@ -5,6 +5,9 @@
  */
 package com.kroz.commands;
 
+import com.kroz.enums.ItemState;
+import com.kroz.items.Item;
+import com.kroz.items.Torch;
 import com.kroz.player.Player;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +19,7 @@ import java.util.List;
 public class LOOK implements ICommand {
     private Player currentPlayer;
     private List<String> currentCommandTextList;
+    private Torch currentItem;
     /**
      * Constructor of LOOK command without parameters.
      */
@@ -23,19 +27,24 @@ public class LOOK implements ICommand {
         initialize();
     }
     private void initialize() {
-        currentPlayer = new Player();
-        currentCommandTextList = new ArrayList<String>();
+        this.currentPlayer = new Player();
+        this.currentCommandTextList = new ArrayList<String>();
+        this.currentItem = new Torch();
     }
     @Override
     public void executeCommand() {
         if (this.isValid()){
-            System.out.println("\n" + currentPlayer.getPlayerCurrentScene().getSceneDescription());
-            this.currentPlayer.getPlayerCurrentScene().showSceneInventory();
+            if (this.hasSceneLighting() || this.isTorchOn()){
+                System.out.println("\n" + currentPlayer.getPlayerCurrentScene().getSceneDescription());
+                this.currentPlayer.getPlayerCurrentScene().showSceneInventory();
+            }
+            else {
+                System.out.println("It's too dark, you can't see anything.");
+            }
         }
         else {
             this.getInvalidInputMessage();
         }
-
     }
 
     @Override
@@ -48,6 +57,10 @@ public class LOOK implements ICommand {
         this.currentCommandTextList = newRawCommandText;
     }
 
+    public void setCurrentItem(Item currentItem) {
+        this.currentItem = (Torch)currentItem;
+    }
+
     @Override
     public boolean isValid() {
         return this.currentCommandTextList.isEmpty();
@@ -56,5 +69,24 @@ public class LOOK implements ICommand {
     @Override
     public String getInvalidInputMessage() {
         return "Command LOOK doesn't get any parameters. Try: [LOOK]";
+    }
+    
+    public boolean hasSceneLighting(){
+        return this.currentPlayer.getPlayerCurrentScene().hasLighting();
+    }
+    
+    public boolean isTorchOn(){
+        if (this.currentPlayer.getPlayerInventory().itemExists(this.currentItem)){
+            this.setCurrentItem(this.currentPlayer.getPlayerInventory().getItemFromInventory(this.currentItem));
+            if (this.currentItem.getItemState().getValue().equalsIgnoreCase("ON")){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        else {
+            return false;
+        }
     }
 }

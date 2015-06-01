@@ -76,9 +76,12 @@ public class TAKE implements ICommand{
                         System.out.println("You can't do that.");
                     }
                 }
+                else {
+                    System.out.println("You can't do that.");
+                }
             }
             else {
-                System.out.println(this.currentItem.getItemName() + " doesn't exist");
+                System.out.println(this.currentCommandTextList.toString().toUpperCase() + " doesn't exist.");
             }
         }
         else {
