@@ -52,15 +52,28 @@ public class Inventory {
         if (itemExists(newItem)) {
             this.itemList.remove(newItem);
         } else {
-            System.out.println("Item doesn't exist and can't be removed");
+            System.out.println("Item doesn't exist and can't be removed.");
         }
     }
 
     public boolean itemExists (Item newItem) {
-        return this.itemList.contains(newItem);
+        for (Item tempItem : this.itemList){
+            if (tempItem.getItemName().equalsIgnoreCase(newItem.getItemName()))
+                return true;
+        }
+        return false;
     }
     
     public void clearInventory(){
         this.itemList.clear();
+    }
+    
+    public Item getItemFromInventory(Item newItem){
+        for (Item tempItem : this.itemList){
+            if (tempItem.getItemName().equalsIgnoreCase(newItem.getItemName())){
+                return tempItem;
+            }
+        }
+        return null;
     }
 }
