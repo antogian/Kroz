@@ -93,8 +93,10 @@ public class DefaultScenario implements IScenario {
 //        newScene.getSceneInventory().addItemInInventory(new Torch());
 //        newScene.getSceneInventory().addItemInInventory(new Key());
         this.defaultScenarioSceneList.add(newScene = new Forest());
-//        newScene = new Scene("You are in a kitchen. West there is a door leading to a room.");
         newScene.getSceneInventory().addItemInInventory(new Key());
+        newScene.getSceneInventory().addItemInInventory(new Torch());
+//        newScene = new Scene("You are in a kitchen. West there is a door leading to a room.");
+
         this.defaultScenarioSceneList.add(newScene = new Kitchen());
 //        newScene = new Scene("You are in a garden. East there is a forest."
 //                + " South there is a house. The door is open.");
@@ -110,5 +112,4 @@ public class DefaultScenario implements IScenario {
     public void setScenarioComplete(Boolean scenarioComplete) {
         this.scenarioComplete = scenarioComplete;
     }
-
 }
