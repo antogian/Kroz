@@ -22,6 +22,7 @@ import com.kroz.commands.TAKE;
 import com.kroz.commands.USE;
 import com.kroz.commands.UNLOCK;
 import com.kroz.commands.LOCK;
+import com.kroz.commands.LIGHT;
 import com.kroz.player.Player;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -63,6 +64,7 @@ public class CommandParser {
         this.commandsMap.put("NEW", NEW.class);
         this.commandsMap.put("LOCK", LOCK.class);
         this.commandsMap.put("UNLOCK", UNLOCK.class);
+        this.commandsMap.put("LIGHT", LIGHT.class);
     }
     /**
      * @param rawCommandString is the input string as the user typed it.
