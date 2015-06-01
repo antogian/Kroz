@@ -12,6 +12,7 @@ public class Scene {
     private String sceneDescription;
     private Inventory sceneInventory;
     private Integer numberOfExits;
+    private boolean lighting;
 
     public Scene() {
         initialize();
@@ -24,6 +25,7 @@ public class Scene {
         this.sceneDescription = "Default Scene Description.";
         this.sceneInventory = new Inventory();
         this.numberOfExits = 0;
+        this.lighting = false;
     }
 
     /**
@@ -33,12 +35,20 @@ public class Scene {
     public Scene(String newSceneDescription) {
         this.sceneDescription = newSceneDescription;
         this.sceneInventory = new Inventory();
+        this.lighting = false;
     }
     
     public Scene(String newSceneDescription, Integer newNumberOfExits) {
         this.sceneDescription = newSceneDescription;
         this.sceneInventory = new Inventory();
         this.numberOfExits = newNumberOfExits;
+    }
+    
+    public Scene(String newSceneDescription, Integer newNumberOfExits, Boolean newLighting) {
+        this.sceneDescription = newSceneDescription;
+        this.sceneInventory = new Inventory();
+        this.numberOfExits = newNumberOfExits;
+        this.lighting = newLighting;
     }
 
     public void setSceneDescription(String newSceneDescription) {
@@ -59,6 +69,14 @@ public class Scene {
 
     public void setNumberOfExits(Integer numberOfExits) {
         this.numberOfExits = numberOfExits;
+    }
+
+    public boolean hasLighting() {
+        return lighting;
+    }
+
+    public void setLighting(boolean lighting) {
+        this.lighting = lighting;
     }
     
 
