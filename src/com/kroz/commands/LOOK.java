@@ -5,8 +5,8 @@
  */
 package com.kroz.commands;
 
-import com.kroz.enums.ItemState;
 import com.kroz.items.Item;
+import com.kroz.items.LightableItem;
 import com.kroz.items.Torch;
 import com.kroz.player.Player;
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ import java.util.List;
 public class LOOK implements ICommand {
     private Player currentPlayer;
     private List<String> currentCommandTextList;
-    private Torch currentItem;
+    private LightableItem currentItem;
     /**
      * Constructor of LOOK command without parameters.
      */
@@ -34,7 +34,7 @@ public class LOOK implements ICommand {
     @Override
     public void executeCommand() {
         if (this.isValid()){
-            if (this.hasSceneLighting() || this.isTorchOn()){
+            if (this.hasSceneLighting() || this.isLightableItemOn()){
                 System.out.println("\n" + currentPlayer.getPlayerCurrentScene().getSceneDescription());
                 this.currentPlayer.getPlayerCurrentScene().showSceneInventory();
             }
@@ -58,7 +58,7 @@ public class LOOK implements ICommand {
     }
 
     public void setCurrentItem(Item currentItem) {
-        this.currentItem = (Torch)currentItem;
+        this.currentItem = (LightableItem)currentItem;
     }
 
     @Override
@@ -75,15 +75,10 @@ public class LOOK implements ICommand {
         return this.currentPlayer.getPlayerCurrentScene().hasLighting();
     }
     
-    public boolean isTorchOn(){
+    public boolean isLightableItemOn(){
         if (this.currentPlayer.getPlayerInventory().itemExists(this.currentItem)){
             this.setCurrentItem(this.currentPlayer.getPlayerInventory().getItemFromInventory(this.currentItem));
-            if (this.currentItem.getItemState().getValue().equalsIgnoreCase("ON")){
-                return true;
-            }
-            else{
-                return false;
-            }
+            return this.currentItem.getItemState().getValue().equalsIgnoreCase("ON");
         }
         else {
             return false;

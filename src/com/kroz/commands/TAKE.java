@@ -18,7 +18,6 @@ public class TAKE implements ICommand{
     private Player currentPlayer;
     private List<String> currentCommandTextList;
     private Item currentItem;
-    private static List<Item> takeableItems = new ArrayList<>();
    
     public TAKE(){
         this.initialize();
@@ -66,15 +65,10 @@ public class TAKE implements ICommand{
     public void executeCommand(){
         if (this.isValid()){
             if (this.itemExists()){
-                if(this.isItemTakeable()){
-                    if (this.isPlayerObject()){
-                        this.removeItemFromScene();
-                        this.addItemToPlayer();
-                        System.out.println(this.currentItem.getItemName() + " added to INVENTORY");
-                    }
-                    else {
-                        System.out.println("You can't do that.");
-                    }
+                if (this.isPlayerObject()){
+                    this.removeItemFromScene();
+                    this.addItemToPlayer();
+                    System.out.println(this.currentItem.getItemName() + " added to INVENTORY");
                 }
                 else {
                     System.out.println("You can't do that.");
@@ -100,13 +94,5 @@ public class TAKE implements ICommand{
     @Override
     public String getInvalidInputMessage() {
         return "Command TAKE takes one parameter. Try: [TAKE parameter]";
-    }
-    
-    public static void addTakeableItem(Item newItem){
-        takeableItems.add(newItem);
-    }
-    
-    public boolean isItemTakeable(){
-        return takeableItems.contains(this.currentItem);
     }
 }

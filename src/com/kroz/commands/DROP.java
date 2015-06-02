@@ -18,7 +18,6 @@ public class DROP implements ICommand{
     private Player currentPlayer;
     private List<String> currentCommandTextList;
     private Item currentItem;
-    private static List<Item> droppableItems = new ArrayList<>();
    
     public DROP(){
         this.initialize();
@@ -61,17 +60,12 @@ public class DROP implements ICommand{
     public void executeCommand(){
         if(this.isValid()){
             if (this.itemExists()){
-                if (this.isItemDroppable()){
-                    this.getItemFromPlayer();
-                    this.addItemToScene();
-                    System.out.println(this.currentItem.getItemName() + " removed from INVENTORY");
-                }
-                else {
-                    System.out.println("You can't do that.");
-                }
+                this.getItemFromPlayer();
+                this.addItemToScene();
+                System.out.println(this.currentItem.getItemName() + " removed from INVENTORY");
             }
             else {
-                System.out.println(this.currentItem.getItemName() + " doesn't exist");
+                System.out.println(this.currentCommandTextList.toString().toUpperCase() + " doesn't exist.");
             }
         }
         else {
@@ -91,13 +85,4 @@ public class DROP implements ICommand{
     public String getInvalidInputMessage() {
         return "Command DROP takes one parameter. Try: [DROP parameter]";
     }
-    
-    public static void addDroppableItem(Item newItem){
-        droppableItems.add(newItem);
-    }
-    
-    public boolean isItemDroppable(){
-        return droppableItems.contains(this.currentItem);
-    }
-    
 }

@@ -5,9 +5,8 @@
  */
 package com.kroz.commands;
 
-import com.kroz.items.Door;
-import com.kroz.items.Item;
 import com.kroz.items.Key;
+import com.kroz.items.OpenableItem;
 import com.kroz.player.Player;
 import com.kroz.scene.SceneExit;
 import java.util.ArrayList;
@@ -21,10 +20,8 @@ public class LOCK implements ICommand{
     
     private Player currentPlayer;
     private List<String> currentCommandTextList;
-    private Door currentItem;
-    private Key currentKey;
-    private static List<Item> unlockableItems = new ArrayList<>();
-    
+    private OpenableItem currentItem;
+    private Key currentKey;    
     
     public LOCK(){
         this.initialize();
@@ -34,6 +31,7 @@ public class LOCK implements ICommand{
         this.currentCommandTextList = new ArrayList<>();
         this.currentKey = new Key();
         this.currentPlayer = new Player();
+        this.currentItem = new OpenableItem();
     }
     
     @Override
@@ -41,9 +39,12 @@ public class LOCK implements ICommand{
         if (this.isValid()){
             if (this.itemExists()) {
                 if (this.keyExists()){
-                    if (this.isItemLockable()){
-                        if (this.isItemOpen()){
-                            System.out.println(this.currentItem.getItemName() + " is open.");                       
+                    if (this.isItemOpen()){
+                        System.out.println(this.currentItem.getItemName() + " is open. You must close it first.");                       
+                    }
+                    else {
+                        if (this.isItemLocked()){
+                            System.out.println(this.currentItem.getItemName() + " is already locked.");
                         }
                         else {
                             this.currentKey.setCurrentItem(this.currentItem);
@@ -51,16 +52,13 @@ public class LOCK implements ICommand{
                             System.out.println(this.currentItem.getItemName() + " locked.");
                         }
                     }
-                    else {
-                        System.out.println("You can't do that.");
-                    }
                 }
                 else {
                     System.out.println("You don't have the key.");
                 }
             }
             else {
-                System.out.println(this.currentCommandTextList + " doesn't exit.");
+                System.out.println(this.currentCommandTextList.toString().toUpperCase() + " doesn't exist.");
             }
         }
         else {
@@ -69,23 +67,26 @@ public class LOCK implements ICommand{
     }
     
     public boolean itemExists(){
-        for(Item tempItem : this.currentPlayer.getPlayerCurrentScene().getSceneInventory().getItemList()){
-            if (tempItem.getItemName().equalsIgnoreCase(this.currentCommandTextList.get(0))){
-                setCurrentItem((Door)tempItem);
-                return true;
-            }
+        if (this.currentPlayer.getPlayerCurrentScene().getSceneInventory().itemExists(this.currentItem)){
+            return true;
         }
-        List <SceneExit> exitsList = new ArrayList<SceneExit>();
-        exitsList = this.currentPlayer.getPlayerCurrentScenario().getScenarioMap().getSceneExits(this.currentPlayer.getPlayerCurrentScene());
-        for(SceneExit tempSceneExit : exitsList){
-            if (!tempSceneExit.getSceneDoor().getItemState().getValue().equals("DEFAULT")){
-                if (tempSceneExit.getSceneDoor().getItemName().equalsIgnoreCase(this.currentCommandTextList.get(0))){
-                    setCurrentItem(tempSceneExit.getSceneDoor());
-                    return true;
+        else{
+            List <SceneExit> exitsList = new ArrayList<SceneExit>();
+            exitsList = this.currentPlayer.getPlayerCurrentScenario().getScenarioMap().getSceneExits(this.currentPlayer.getPlayerCurrentScene());
+            for(SceneExit tempSceneExit : exitsList){
+                if (!tempSceneExit.getSceneDoor().getItemState().getValue().equals("DEFAULT")){
+                    if (tempSceneExit.getSceneDoor().getItemName().equalsIgnoreCase(this.currentCommandTextList.get(0))){
+                        setCurrentItem(tempSceneExit.getSceneDoor());
+                        return true;
+                    }
                 }
             }
+            return false;
         }
-        return false;
+    }
+    
+    public boolean isItemLocked(){
+        return this.currentItem.isItemLocked();
     }
     
     public boolean isItemOpen(){
@@ -93,13 +94,7 @@ public class LOCK implements ICommand{
     }
     
     public boolean keyExists(){
-        for(Item tempItem : this.currentPlayer.getPlayerInventory().getItemList()){
-            if (tempItem.getItemName().equalsIgnoreCase(this.currentKey.getItemName())){
-                this.setCurrentKey((Key)tempItem);
-                return true;
-            }
-        }
-        return false;
+        return this.currentPlayer.getPlayerInventory().itemExists(this.currentKey);
     }
     
     @Override
@@ -123,19 +118,11 @@ public class LOCK implements ICommand{
         return "Command LOCK takes one parameter. Try: [LOCK parameter]";
     }
     
-    public void setCurrentItem(Door newCurrentitem){
-        this.currentItem = newCurrentitem;
+    public void setCurrentItem(OpenableItem newItem){
+        this.currentItem = newItem;
     }
     
     public void setCurrentKey(Key newKey){
         this.currentKey = newKey;
-    }
-    
-    public static void addLockableItem(Door newItem){
-        unlockableItems.add(newItem);
-    }
-    
-    public boolean isItemLockable(){
-        return unlockableItems.contains(this.currentItem);
     }
 }

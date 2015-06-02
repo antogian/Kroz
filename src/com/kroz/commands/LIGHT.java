@@ -5,8 +5,8 @@
  */
 package com.kroz.commands;
 
-import com.kroz.enums.ItemState;
 import com.kroz.items.Item;
+import com.kroz.items.LightableItem;
 import com.kroz.items.Torch;
 import com.kroz.player.Player;
 import java.util.ArrayList;
@@ -20,9 +20,7 @@ public class LIGHT implements ICommand{
 
     private Player currentPlayer;
     private List<String> currentCommandTextList;
-    private Torch currentItem;
-    private static List<Item> lightableItems = new ArrayList<>();
-    
+    private LightableItem currentItem;
     
     public LIGHT(){
         this.initialize();
@@ -42,8 +40,7 @@ public class LIGHT implements ICommand{
                     System.out.println(this.currentItem.getItemName().toUpperCase() + " is already turned on.");
                 }
                 else {
-                    this.currentItem.useItem(this.currentPlayer.getPlayerCurrentScene());
-                    this.currentItem.setItemState(ItemState.ENABLED);
+                    this.currentItem.lightItem(this.currentPlayer.getPlayerCurrentScene());
                     System.out.println(this.currentItem.getItemName().toUpperCase() + " lightened. Now you can see everything.");
                 }
             }
@@ -87,22 +84,10 @@ public class LIGHT implements ICommand{
     public boolean isTorchOn(){
         if (this.itemExists()){
             this.setCurrentItem(this.currentPlayer.getPlayerInventory().getItemFromInventory(this.currentItem));
-            if (this.currentItem.getItemState().getValue().equals("ON")){
-                return true;
-            }
-            return false;
+            return this.currentItem.getItemState().getValue().equals("ON");
         }
         else {
             return false;
         }
-    }
-    
-    public boolean isItemLightable(){
-        return lightableItems.contains(this.currentItem);
-    }
-    
-    public static void addLightableItems(Item newItem){
-        lightableItems.add(newItem);
-    }
-    
+    }   
 }
