@@ -5,8 +5,6 @@
  */
 package com.kroz.items;
 
-import com.kroz.commands.DROP;
-import com.kroz.commands.TAKE;
 import com.kroz.enums.ItemState;
 import com.kroz.enums.ItemType;
 
@@ -16,26 +14,24 @@ import com.kroz.enums.ItemType;
  */
 public class Key extends Item {
     
-    private Door currentItem;
+    private OpenableItem currentItem;
     
     public Key() {
         super("Key", "a key that unlocks a door", ItemType.PLAYER_OBJECT, ItemState.DISABLED);
-        this.currentItem = new Door();
-        this.setLegalActions();
+        this.currentItem = new OpenableItem();
     }
     
-    public Key(Door newDoor){
+    public Key(OpenableItem newItem){
         super("Key", "a key that unlocks a door", ItemType.PLAYER_OBJECT, ItemState.DISABLED);
-        this.currentItem = newDoor;
-        this.setLegalActions();
+        this.currentItem = newItem;
     }
     
     public void unlockItem(){
-        this.currentItem.unlockDoor();
+        this.currentItem.setLockState(ItemState.DISABLED);
     }
     
     public void lockItem(){
-        this.currentItem.lockDoor();
+        this.currentItem.setLockState(ItemState.ENABLED);
     }
     
     @Override
@@ -43,13 +39,7 @@ public class Key extends Item {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    public void setCurrentItem(Item newItem){
-        this.currentItem = (Door)newItem;
-    }
-    
-    public void setLegalActions(){
-        TAKE.addTakeableItem(this);
-        DROP.addDroppableItem(this);
-    }
-    
+    public void setCurrentItem(OpenableItem newItem){
+        this.currentItem = newItem;
+    }   
 }
