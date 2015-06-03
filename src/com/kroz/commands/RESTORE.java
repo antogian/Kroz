@@ -38,10 +38,10 @@ public class RESTORE implements ICommand{
                 Player newPlayer = (Player)decoder.readObject();
                 decoder.close();
                 this.assignNewPlayer(newPlayer);
-                System.out.println("Game restored");
+                System.out.println("Game restored.");
             }
             catch(Exception e){
-                System.out.println("Exception caught");
+                System.out.println("Restore game failed. Please try again.");
             }
         }
         else {

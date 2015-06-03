@@ -27,6 +27,7 @@ public class CLOSE implements ICommand{
     public void initialize(){
         this.currentPlayer = new Player();
         this.currentCommandTextList = new ArrayList<>();
+        this.currentItem = new OpenableItem();
     }
 
     @Override

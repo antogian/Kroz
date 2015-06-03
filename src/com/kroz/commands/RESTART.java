@@ -36,6 +36,8 @@ public class RESTART implements ICommand{
         if (this.isValid()){
             this.currentPlayer.setPlayerCurrentScene(scenario.getScenarioSceneList().get(0));
             this.currentPlayer.getPlayerInventory().clearInventory();
+            System.out.println("Game restarted\n");
+            System.out.println(this.getCurrentPlayer().getPlayerCurrentScene().getSceneDescription());
         }
         else {
             this.getInvalidInputMessage();

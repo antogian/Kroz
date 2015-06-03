@@ -40,7 +40,7 @@ public class SAVE implements ICommand{
                 System.out.println("Game saved.");
             }
             catch(Exception e){
-                System.out.println("Exception caught.");
+                System.out.println("Save game failed. Please try again.");
             }
         }
         else {
