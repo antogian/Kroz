@@ -18,7 +18,10 @@ import com.kroz.scenario.IScenario;
  * @author Eleni Aidonidou
  */
 public class Main {
-
+    private Player player;
+    public void setPlayer(Player newPlayer){
+        this.player = newPlayer;
+    }
     /**
      * @param args the command line arguments
      */
