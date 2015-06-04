@@ -5,6 +5,7 @@
  */
 package com.kroz.commands;
 
+import com.kroz.Main;
 import com.kroz.player.Player;
 import java.beans.XMLDecoder;
 import java.io.BufferedInputStream;
@@ -88,10 +89,8 @@ public class RESTORE implements ICommand{
      * @param newPlayer The new "old" player object.
      */
     public void assignNewPlayer(Player newPlayer){
-        this.currentPlayer.setPlayerCurrentScenario(newPlayer.getPlayerCurrentScenario());
-        this.currentPlayer.setPlayerInventory(newPlayer.getPlayerInventory());
-        this.currentPlayer.setPlayerCurrentScene(newPlayer.getPlayerCurrentScene());
-        this.currentPlayer.setRawPlayerName(newPlayer.getRawPlayerName());
+        Main m = new Main();
+        m.setPlayer(newPlayer);
     }
     
     public Player getCurrentPlayer(){
