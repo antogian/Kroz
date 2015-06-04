@@ -7,6 +7,7 @@ package com.kroz.commands;
 
 import com.kroz.player.Player;
 import com.kroz.items.Item;
+import com.kroz.items.Trap;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -26,6 +27,7 @@ public class TAKE implements ICommand{
     public void initialize(){
         this.currentPlayer = new Player();
         this.currentCommandTextList = new ArrayList<>();
+        this.currentItem = new Trap();
     }
     
     @Override
@@ -69,6 +71,10 @@ public class TAKE implements ICommand{
                     this.removeItemFromScene();
                     this.addItemToPlayer();
                     System.out.println(this.currentItem.getItemName() + " added to INVENTORY");
+                    if (this.currentItem.getItemName().equalsIgnoreCase("Briefcase")){
+                        this.currentPlayer.getPlayerCurrentScenario().setScenarioComplete(true);
+                        System.out.println("You are now a millionaire!");
+                    }
                 }
                 else {
                     System.out.println("You can't do that.");

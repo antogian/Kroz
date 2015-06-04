@@ -6,6 +6,7 @@
 package com.kroz.commands;
 
 import com.kroz.items.Item;
+import com.kroz.items.Trap;
 import com.kroz.player.Player;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,7 @@ public class DROP implements ICommand{
     public void initialize(){
         this.currentPlayer = new Player();
         this.currentCommandTextList = new ArrayList<>();
+        this.currentItem = new Trap();
     }
     
     @Override

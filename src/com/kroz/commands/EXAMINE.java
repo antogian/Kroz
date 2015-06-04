@@ -6,6 +6,7 @@
 package com.kroz.commands;
 
 import com.kroz.items.Item;
+import com.kroz.items.Trap;
 import com.kroz.player.Player;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,7 @@ public class EXAMINE implements ICommand{
     public void initialize(){
         this.currentPlayer = new Player();
         this.currentCommandTextList = new ArrayList<>();
+        this.currentItem = new Trap();
     }
     
     @Override
@@ -37,7 +39,7 @@ public class EXAMINE implements ICommand{
                 System.out.println(this.currentItem.getItemDescription());
             }
             else {
-                System.out.println(this.currentItem.getItemName() + " doesn't exist");
+                System.out.println(this.currentCommandTextList.get(0).toUpperCase() + " doesn't exist");
             }
         }
         else {
@@ -66,6 +68,12 @@ public class EXAMINE implements ICommand{
     
     public boolean itemExists(){
         for(Item tempItem : this.currentPlayer.getPlayerCurrentScene().getSceneInventory().getItemList()){
+            if (tempItem.getItemName().equalsIgnoreCase(this.currentCommandTextList.get(0))){
+                setCurrentItem(tempItem);
+                return true;
+            }
+        }
+        for(Item tempItem : this.currentPlayer.getPlayerInventory().getItemList()){
             if (tempItem.getItemName().equalsIgnoreCase(this.currentCommandTextList.get(0))){
                 setCurrentItem(tempItem);
                 return true;

@@ -39,6 +39,8 @@ public class RESTORE implements ICommand{
                 decoder.close();
                 this.assignNewPlayer(newPlayer);
                 System.out.println("Game restored.");
+                System.out.println(this.currentPlayer.getPlayerCurrentScene().getSceneDescription());
+                System.out.println("");
             }
             catch(Exception e){
                 System.out.println("Restore game failed. Please try again.");
