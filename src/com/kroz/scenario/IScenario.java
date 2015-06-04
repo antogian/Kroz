@@ -15,4 +15,5 @@ public interface IScenario {
     void setScenarioMap();
     Map getScenarioMap();
     List<Scene> getScenarioSceneList();
+    void setScenarioComplete(Boolean scenarioComplete);
 }

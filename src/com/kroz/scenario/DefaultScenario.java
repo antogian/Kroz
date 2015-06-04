@@ -96,7 +96,8 @@ public class DefaultScenario implements IScenario {
         this.defaultScenarioSceneList.add(new Room());
         this.defaultScenarioSceneList.add(new Basement());
     }
-
+    
+    @Override
     public void setScenarioComplete(Boolean scenarioComplete) {
         this.scenarioComplete = scenarioComplete;
     }
