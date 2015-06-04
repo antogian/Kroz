@@ -14,33 +14,23 @@ import com.kroz.enums.ItemType;
  */
 public class OpenableItem extends Item{
     
-    //protected Key currentKey = new Key();
     protected ItemState currentLock;
     
     public OpenableItem(){
         super("Openable Item", "An openable item", ItemType.SCENE_OBJECT, ItemState.DEFAULT);
-        //this.currentKey = new Key();
         this.currentLock = ItemState.DEFAULT;
     }
     
     public OpenableItem(String newItemName, String newItemDescription, ItemType newItemType, ItemState newItemState) {
         super(newItemName, newItemDescription, newItemType, newItemState);
-        //this.currentKey = new Key();
         this.currentLock = ItemState.DEFAULT;
     }
     
     public OpenableItem(String newItemName, String newItemDescription, ItemType newItemType, ItemState newItemState, ItemState lockState) {
         super(newItemName, newItemDescription, newItemType, newItemState);
-        //this.currentKey = new Key();
         this.currentLock = lockState;
     }
     
-//    public OpenableItem(String newItemName, String newItemDescription, ItemType newItemType, ItemState newItemState, Key newKey, ItemState lockState) {
-//        super(newItemName, newItemDescription, newItemType, newItemState);
-//        //this.currentKey = newKey;
-//        this.currentLock = lockState;
-//    }
-
     @Override
     public void changeItemState() {
         if (itemState == ItemState.DISABLED) {
