@@ -5,6 +5,9 @@
  */
 package com.kroz.scene.templates;
 
+import com.kroz.items.Briefcase;
+import com.kroz.items.Key;
+import com.kroz.items.Torch;
 import com.kroz.scene.Scene;
 
 /**
@@ -14,7 +17,9 @@ import com.kroz.scene.Scene;
 public class Forest extends Scene{
 
     public Forest() {
-        super("You are in a forest. West there is a garden.", 2);
+        super("You are in a Forest. West there is a Clearing.", 1);
+        this.setLighting(true);
+        this.getSceneInventory().addItemInInventory(new Key());
     }
 
 }

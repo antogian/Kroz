@@ -5,6 +5,7 @@
  */
 package com.kroz.scene.templates;
 
+import com.kroz.items.Briefcase;
 import com.kroz.scene.Scene;
 
 /**
@@ -14,7 +15,8 @@ import com.kroz.scene.Scene;
 public class Basement extends Scene {
 
     public Basement() {
-        super("You are in a basement. North there is a staircase leading upwards.", 1);
+        super("You are in a Basement. North there is a staircase leading upwards.", 1);
+        this.setLighting(false);
+        this.getSceneInventory().addItemInInventory(new Briefcase());
     }
-
 }

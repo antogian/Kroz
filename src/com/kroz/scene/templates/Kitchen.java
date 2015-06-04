@@ -14,7 +14,8 @@ import com.kroz.scene.Scene;
 public class Kitchen extends Scene {
 
     public Kitchen() {
-        super("You are in a kitchen. West there is a door leading to a room.", 1);
+        super("You are in a Kitchen. West there is a Room.", 1);
+        this.setLighting(false);
     }
 
 }

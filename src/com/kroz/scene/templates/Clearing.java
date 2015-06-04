@@ -14,7 +14,8 @@ import com.kroz.scene.Scene;
 public class Clearing extends Scene {
 
     public Clearing() {
-        super("You are in a Clearing.", 2);
+        super("You are in a Clearing. East there is a Forest. West there is a House.", 2);
+        this.setLighting(true);
     }
     
 }

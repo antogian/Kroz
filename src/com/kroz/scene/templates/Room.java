@@ -14,9 +14,9 @@ import com.kroz.scene.Scene;
 public class Room extends Scene {
 
     public Room() {
-        super("You are in a room. East there is a kitchen."
-                + "\nSouth you can see a staircase leading to the basement."
-                + "\nNorth is an open door leading to a garden.\n", 2);
+        super("You are in a Room. East there is a Kitchen. South you can see a staircase leading to the Basement."
+               + "\nNorth is a Garden.\n", 3);
+        this.setLighting(false);
     }
 
 }

@@ -5,6 +5,7 @@
  */
 package com.kroz.scene.templates;
 
+import com.kroz.items.Torch;
 import com.kroz.scene.Scene;
 
 /**
@@ -14,8 +15,9 @@ import com.kroz.scene.Scene;
 public class Garden extends Scene {
 
     public Garden() {
-        super("You are in a garden. East there is a forest."
-                + " South there is a house.", 3);
+        super("You are in a Garden. East there is a Clearing. South there is a House.", 2);
+        this.setLighting(true);
+        this.getSceneInventory().addItemInInventory(new Torch());
     }
 
 }
