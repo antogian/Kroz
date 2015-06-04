@@ -24,15 +24,15 @@ public class Main {
      */
     public static void main(final String[] args) {
         IScenario scenario = new DefaultScenario();
-        Player player = new Player("ThePlayer", scenario);
+        Player player = new Player();
         ConsoleInputParser consoleInputParser = new ConsoleInputParser();
         CommandParser commandParser = new CommandParser();
         ICommand currentCommand;
-        /*
+
         //Gets new Player Name and prints out The new players name
         player.setPlayerName();
         player.getPlayerName();
-        */
+        player.setPlayerCurrentScenario(scenario);
         //Sets the players current scene to the first scene of the scenario
         player.setPlayerCurrentScene(scenario.getScenarioSceneList().get(0));
         /*
