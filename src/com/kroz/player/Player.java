@@ -25,9 +25,7 @@ public class Player {
     public Player() {
         initialize();
     }
-    /**
-     * @param playerName playersName to set 
-     */
+
     public Player(String playerName, IScenario scenario) {
         this.playerName = playerName;
         this.playerCurrentScene = new Scene("Default Scene Desctiption.");
@@ -47,7 +45,7 @@ public class Player {
     *Sets the player's name.
     *
     *Doesn't have parameters because it reads the data from keyboard
-    * and then sets the player's name.
+    *and then sets the player's name.
     */
     public void setPlayerName() {
         Scanner scanner = new Scanner(System.in);
@@ -59,16 +57,11 @@ public class Player {
         }
         this.playerName = temp;
     }
-    /**
-     * Displays player's name at screen.
-     */
+
     public void getPlayerName() {
         System.out.println("Current Player: " + this.playerName);
     }
-    /**
-    *
-    * @param newPlayerCurrentScene newPlayerCurrentScene to set
-    */
+  
     public void setPlayerCurrentScene(Scene newPlayerCurrentScene) {
         this.playerCurrentScene = newPlayerCurrentScene;
     }
@@ -86,10 +79,7 @@ public class Player {
     public void setPlayerCurrentScenario(IScenario newPlayerCurrentScenario) {
         this.playerCurrentScenario = newPlayerCurrentScenario;
     }
-    /**
-     *
-     * @return playerCurrentSceneId.
-     */
+   
     public Scene getPlayerCurrentScene() {
         return this.playerCurrentScene;
     }

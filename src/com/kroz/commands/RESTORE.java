@@ -29,6 +29,11 @@ public class RESTORE implements ICommand{
         this.currentCommandTextList = new ArrayList<String>();
     }
     
+    /**Implementation of the executeCommand of the ICommand interface.
+     * As long as the command given by player is correct, it reads player's
+     * input from console followed by .xml suffix and if it finds the 
+     * corresponding file it loads it by restoring the adventure of the player.
+     */
     @Override
     public void executeCommand(){
         if (this.isValid()){
@@ -51,21 +56,37 @@ public class RESTORE implements ICommand{
         }
     }
     
+    /**
+     * Implements the setCurrentPlayer method of the ICommand interface.
+     * @param newCurrentPlayer Player who's interacting.
+     */
     @Override
     public void setCurrentPlayer(Player newCurrentPlayer){
         this.currentPlayer = newCurrentPlayer;
     }
     
+    /**
+     * Implements the setCommandTextList method of the ICommand interface.
+     * @param newRawCommandText The actual input taken from the user through console.
+     */
     @Override
     public void setCommandTextList(List<String> newRawCommandText){
         this.currentCommandTextList = newRawCommandText;
     }
 
+    /**
+     * Verifies whether or not the command given is correct.
+     */
     @Override
     public boolean isValid(){
         return this.currentCommandTextList.size() == 1;
     }
     
+    /**
+     * It creates a new player object which has all the attributes of the player
+     * contained in the save file thus restoring that player's adventure.
+     * @param newPlayer The new "old" player object.
+     */
     public void assignNewPlayer(Player newPlayer){
         this.currentPlayer.setPlayerCurrentScenario(newPlayer.getPlayerCurrentScenario());
         this.currentPlayer.setPlayerInventory(newPlayer.getPlayerInventory());
@@ -77,6 +98,10 @@ public class RESTORE implements ICommand{
         return this.currentPlayer;
     }
 
+    /**
+     * Implements the getInvalidInputMessage method of the ICommand interface.
+     * Prints corresponding message when the player's input is invalid. 
+     */
     @Override
     public String getInvalidInputMessage() {
         return "Command RESTORE takes one parameter. Try: [RESTORE PlayerName]";

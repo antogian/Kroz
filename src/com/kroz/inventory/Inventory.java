@@ -33,6 +33,9 @@ public class Inventory {
         this.itemList = newItemList;
     }
 
+    /**
+     * Shows the inventory.
+     */
     public void showInventory() {
         if (this.itemList.isEmpty()) {
             throw new EmptyStackException();

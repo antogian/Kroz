@@ -31,6 +31,11 @@ public enum Direction {
         return this.name;
     }
     
+    /**
+     * It takes the direction that the player has given through command in console.
+     * @param directionString The direction given.
+     * @return The preferred direction.
+     */
     public static Direction extractDirection(String directionString) {
         Direction direction = Direction.DEFAULT;
         for (Direction temp : Direction.values()) {

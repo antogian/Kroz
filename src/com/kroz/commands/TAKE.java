@@ -30,6 +30,10 @@ public class TAKE implements ICommand{
         this.currentItem = new Trap();
     }
     
+    /**
+     * Implements the setCurrentPlayer method of the ICommand interface.
+     * @param newCurrentPlayer Player who's interacting.
+     */
     @Override
     public void setCurrentPlayer(Player currentPlayer){
         this.currentPlayer = currentPlayer;
@@ -39,16 +43,26 @@ public class TAKE implements ICommand{
         this.currentItem = currentItem;
     }
     
+    /**
+     * Implements the setCommandTextList method of the ICommand interface.
+     * @param newRawCommandText The actual input taken from the user through console.
+     */
     @Override
     public void setCommandTextList(List<String> rawCommandText){
         this.currentCommandTextList = rawCommandText;
     }
     
+    /**
+     * Verifies whether or not the command given is correct.
+     */
     @Override
     public boolean isValid(){
         return this.currentCommandTextList.size() == 1;
     }
     
+     /**
+     * Checks whether or not the item is available in the scene's inventory to take it.
+     */
     public boolean itemExists(){
         for(Item tempItem : this.currentPlayer.getPlayerCurrentScene().getSceneInventory().getItemList()){
             if (tempItem.getItemName().equalsIgnoreCase(this.currentCommandTextList.get(0))){
@@ -59,10 +73,20 @@ public class TAKE implements ICommand{
         return false;
     }
     
+     /**
+     * Checks if the item is eligible for the player to take it
+     * @return Whether or not the item can be acquired.
+     */
     public boolean isPlayerObject(){
         return this.currentItem.getItemType().getValue().equalsIgnoreCase("PO");
     }
     
+    /**Implementation of the executeCommand of the ICommand interface.
+     * As long as the command given by player is correct, it checks if the item
+     * is present in scene. If so it checks whether it can be acquired by the
+     * player or not and if it does then it adds in player's inventory.
+     * Otherwise, it informs the player that the player id ineligible for possession.
+     */
     @Override
     public void executeCommand(){
         if (this.isValid()){
@@ -88,15 +112,25 @@ public class TAKE implements ICommand{
             this.getInvalidInputMessage();
         }
     }
-     
+    
+    /**
+     * It removes the item from the scene inventory when it is taken by the player.
+     */
     public void removeItemFromScene(){
         this.currentPlayer.getPlayerCurrentScene().getSceneInventory().removeItemFromInventory(this.currentItem);
     }
     
+    /**
+     * It adds the item to player's inventory.
+     */
     public void addItemToPlayer(){
         this.currentPlayer.getPlayerInventory().addItemInInventory(this.currentItem);
     }
 
+    /**
+     * Implements the getInvalidInputMessage method of the ICommand interface.
+     * Prints corresponding message when the player's input is invalid. 
+     */
     @Override
     public String getInvalidInputMessage() {
         return "Command TAKE takes one parameter. Try: [TAKE parameter]";

@@ -31,6 +31,12 @@ public class LOOK implements ICommand {
         this.currentCommandTextList = new ArrayList<String>();
         this.currentItem = new Torch();
     }
+    
+    /**Implementation of the executeCommand of the ICommand interface.
+     * As long as the command given by player is correct and the scene is lighten
+     * then it reveals the scene inventory to the player. If not, it informs
+     * the player that he/she will not see a thing.
+     */
     @Override
     public void executeCommand() {
         if (this.isValid()){
@@ -47,11 +53,19 @@ public class LOOK implements ICommand {
         }
     }
 
+    /**
+     * Implements the setCurrentPlayer method of the ICommand interface.
+     * @param newCurrentPlayer Player who's interacting.
+     */
     @Override
     public void setCurrentPlayer(Player newCurrentPlayer) {
         this.currentPlayer = newCurrentPlayer;
     }
 
+    /**
+     * Implements the setCommandTextList method of the ICommand interface.
+     * @param newRawCommandText The actual input taken from the user through console.
+     */
     @Override
     public void setCommandTextList(List<String> newRawCommandText) {
         this.currentCommandTextList = newRawCommandText;
@@ -61,20 +75,35 @@ public class LOOK implements ICommand {
         this.currentItem = (LightableItem)currentItem;
     }
 
+    /**
+     * Verifies whether or not the command given is correct.
+     */
     @Override
     public boolean isValid() {
         return this.currentCommandTextList.isEmpty();
     }
 
+    /**
+     * Implements the getInvalidInputMessage method of the ICommand interface.
+     * Prints corresponding message when the player's input is invalid. 
+     */
     @Override
     public String getInvalidInputMessage() {
         return "Command LOOK doesn't get any parameters. Try: [LOOK]";
     }
     
+    /**
+     * Checks if the scene is lighten.
+     * @return Whether there is light in scene or not.
+     */
     public boolean hasSceneLighting(){
         return this.currentPlayer.getPlayerCurrentScene().hasLighting();
     }
     
+    /**
+     * Checks if the player has a torch (or similar item) and if it is on.
+     * @return If player torch item is on or not.
+     */
     public boolean isLightableItemOn(){
         if (this.currentPlayer.getPlayerInventory().itemExists(this.currentItem)){
             this.setCurrentItem(this.currentPlayer.getPlayerInventory().getItemFromInventory(this.currentItem));

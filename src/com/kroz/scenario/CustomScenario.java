@@ -56,6 +56,10 @@ public class CustomScenario implements IScenario {
         this.scenarioComplete = scenarioComplete;
     }
     
+    /**
+     * Checks whether or not the player has completed his/her adventure.
+     * @return Whether the scenario is completed.
+     */
     @Override
     public boolean isScenarioComplete() {
         return this.scenarioComplete;

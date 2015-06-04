@@ -18,6 +18,9 @@ public class Briefcase extends Item{
         super("Briefcase", "A briefcase full of money", ItemType.PLAYER_OBJECT, ItemState.DISABLED);       
     }
     
+    /**
+     * Implementation of the abstract method of the Item superclass.
+     */
     @Override
     public void changeItemState() {
         if (itemState == ItemState.DISABLED) {

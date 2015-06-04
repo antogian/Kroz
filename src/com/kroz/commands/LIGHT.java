@@ -32,6 +32,12 @@ public class LIGHT implements ICommand{
         this.currentItem = new Torch();
     }
     
+    /**
+     * Implementation of the executeCommand of the ICommand interface.
+     * As long as the command given by player is correct, it checks
+     * whether or not the item is lit to light it. If it is alreDY lit
+     * it prints a corresponding message.
+     */
     @Override
     public void executeCommand(){
         if (this.isValid()){
@@ -53,11 +59,19 @@ public class LIGHT implements ICommand{
         }
     }
     
+    /**
+     * Implements the setCurrentPlayer method of the ICommand interface.
+     * @param newCurrentPlayer Player who's interacting.
+     */
     @Override
     public void setCurrentPlayer(Player newCurrentPlayer){
         this.currentPlayer = newCurrentPlayer;
     }
     
+    /**
+     * Implements the setCommandTextList method of the ICommand interface.
+     * @param newRawCommandText The actual input taken from the user through console.
+     */
     @Override
     public void setCommandTextList(List<String> newRawCommandText){
         this.currentCommandTextList = newRawCommandText;
@@ -67,20 +81,33 @@ public class LIGHT implements ICommand{
         this.currentItem = (Torch) item;
     }
     
+    /**
+     * Verifies whether or not the command given is correct.
+     */
     @Override
     public boolean isValid(){
         return this.currentCommandTextList.size() == 1;
     }
     
+    /**
+     * Checks whether or not the item is available in the player's inventory to light it.
+     */
     public boolean itemExists(){
         return this.currentPlayer.getPlayerInventory().itemExists(this.currentItem);
     }
 
+    /**
+     * Implements the getInvalidInputMessage method of the ICommand interface.
+     * Prints corresponding message when the player's input is invalid. 
+     */
     @Override
     public String getInvalidInputMessage() {
         return "Command EXAMINE takes one parameter. Try: [EXAMINE parameter]";
     }
     
+    /**
+     * Renders the torch lit.
+     */
     public boolean isTorchOn(){
         if (this.itemExists()){
             this.setCurrentItem(this.currentPlayer.getPlayerInventory().getItemFromInventory(this.currentItem));

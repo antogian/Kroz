@@ -34,6 +34,12 @@ public class LOCK implements ICommand{
         this.currentItem = new OpenableItem();
     }
     
+    /**Implementation of the executeCommand of the ICommand interface.
+     * As long as the command given by player is correct, it checks whether
+     * or not there is the lockable item available and if it does it checks
+     * if the player has the key to lock it or not. If it is already open or
+     * closed the method informs the player about it.
+     */
     @Override
     public void executeCommand(){
         if (this.isValid()){
@@ -66,6 +72,9 @@ public class LOCK implements ICommand{
         }
     }
     
+    /**
+     * Checks whether or not the item is available in the scene's inventory to lock it.
+     */
     public boolean itemExists(){
         if (this.currentPlayer.getPlayerCurrentScene().getSceneInventory().itemExists(this.currentItem)){
             return true;
@@ -85,34 +94,60 @@ public class LOCK implements ICommand{
         }
     }
     
+    /**
+     * Checks if the item is locked.
+     * @return Whether the item is stated as locked
+     */
     public boolean isItemLocked(){
         return this.currentItem.isItemLocked();
     }
     
+    /**
+     * Checks if the item is open.
+     * @return Whether the item is stated as opened.
+     */
     public boolean isItemOpen(){
         return this.currentItem.getItemState().getValue().equalsIgnoreCase("ON");
     }
     
+    /**
+     * Checks if the player has the key.
+     * @return Whether or not the player has the key.
+     */
     public boolean keyExists(){
         return this.currentPlayer.getPlayerInventory().itemExists(this.currentKey);
     }
     
+    /**
+     * Implements the setCurrentPlayer method of the ICommand interface.
+     * @param newCurrentPlayer Player who's interacting.
+     */
     @Override
     public void setCurrentPlayer(Player newCurrentPlayer){
         this.currentPlayer = newCurrentPlayer;
     }
     
+    /**
+     * Implements the setCommandTextList method of the ICommand interface.
+     * @param newRawCommandText The actual input taken from the user through console.
+     */
     @Override
     public void setCommandTextList(List<String> newRawCommandText){
         this.currentCommandTextList = newRawCommandText;
     }
     
-    
+    /**
+     * Verifies whether or not the command given is correct.
+     */
     @Override
     public boolean isValid(){
         return this.currentCommandTextList.size() == 1;
     }
     
+    /**
+     * Implements the getInvalidInputMessage method of the ICommand interface.
+     * Prints corresponding message when the player's input is invalid. 
+     */
     @Override
     public String getInvalidInputMessage(){
         return "Command LOCK takes one parameter. Try: [LOCK parameter]";

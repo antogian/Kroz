@@ -32,6 +32,12 @@ public class EXAMINE implements ICommand{
         this.currentItem = new Trap();
     }
     
+    /**
+     * Implementation of the executeCommand of the ICommand interface.
+     * As long as the command given by player is correct,
+     * this method checks whether the object is available
+     * to interact with and as long as it is, it prints its description.
+     */
     @Override
     public void executeCommand(){
         if (this.isValid()){
@@ -47,11 +53,19 @@ public class EXAMINE implements ICommand{
         }
     }
     
+    /**
+     * Implements the setCurrentPlayer method of the ICommand interface.
+     * @param newCurrentPlayer Player who's interacting.
+     */
     @Override
     public void setCurrentPlayer(Player newCurrentPlayer){
         this.currentPlayer = newCurrentPlayer;
     }
     
+    /**
+     * Implements the setCommandTextList method of the ICommand interface.
+     * @param newRawCommandText The actual input taken from the user through console.
+     */
     @Override
     public void setCommandTextList(List<String> newRawCommandText){
         this.currentCommandTextList = newRawCommandText;
@@ -61,11 +75,17 @@ public class EXAMINE implements ICommand{
         this.currentItem = item;
     }
     
+    /**
+     * Verifies whether or not the command given is correct.
+     */
     @Override
     public boolean isValid(){
         return this.currentCommandTextList.size() == 1;
     }
     
+    /**
+     * Checks whether or not the item is available to interact with.
+     */
     public boolean itemExists(){
         for(Item tempItem : this.currentPlayer.getPlayerCurrentScene().getSceneInventory().getItemList()){
             if (tempItem.getItemName().equalsIgnoreCase(this.currentCommandTextList.get(0))){
@@ -82,6 +102,10 @@ public class EXAMINE implements ICommand{
         return false;
     }
 
+    /**
+     * Implements the getInvalidInputMessage method of the ICommand interface.
+     * Prints corresponding message when the player's input is invalid. 
+     */
     @Override
     public String getInvalidInputMessage() {
         return "Command EXAMINE takes one parameter. Try: [EXAMINE parameter]";

@@ -25,6 +25,13 @@ public class INVENTORY implements ICommand{
         currentPlayer = new Player();
         currentCommandTextList = new ArrayList<String>();
     }
+    
+    /**
+     * Implementation of the executeCommand of the ICommand interface.
+     * As long as the command given by player is correct, it shows the
+     * player's inventory, the full list of the items contained and if
+     * it is empty it prints a corresponding message.
+     */
     @Override
     public void executeCommand() {
         if (this.isValid()){
@@ -39,21 +46,36 @@ public class INVENTORY implements ICommand{
         }
     }
 
+    /**
+     * Implements the setCurrentPlayer method of the ICommand interface.
+     * @param newCurrentPlayer Player who's interacting.
+     */
     @Override
     public void setCurrentPlayer(Player newCurrentPlayer) {
         this.currentPlayer = newCurrentPlayer;
     }
 
+    /**
+     * Implements the setCommandTextList method of the ICommand interface.
+     * @param newRawCommandText The actual input taken from the user through console.
+     */
     @Override
     public void setCommandTextList(List<String> newRawCommandText) {
         this.currentCommandTextList = newRawCommandText;
     }
 
+    /**
+     * Verifies whether or not the command given is correct.
+     */
     @Override
     public boolean isValid() {
         return this.currentCommandTextList.isEmpty();
     }
 
+    /**
+     * Implements the getInvalidInputMessage method of the ICommand interface.
+     * Prints corresponding message when the player's input is invalid. 
+     */
     @Override
     public String getInvalidInputMessage() {
         return "Command INVENTORY doesn't get any parameters. Try: [INVENTORY]";

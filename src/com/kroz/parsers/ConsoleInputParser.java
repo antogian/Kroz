@@ -21,9 +21,6 @@ public class ConsoleInputParser {
         initialize();
     }
 
-    /**
-    *Initializes scanner object
-    */
     private void initialize() {
         scanner = new Scanner(System.in);
     }

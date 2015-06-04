@@ -71,6 +71,10 @@ public class Scene {
         this.numberOfExits = numberOfExits;
     }
 
+    /**
+     * Defines if the room has light so that the player would be able to look around.
+     * @return If is lighted or not.
+     */
     public boolean hasLighting() {
         return lighting;
     }
@@ -80,6 +84,9 @@ public class Scene {
     }
     
 
+    /**
+     * Shows the items that are present in current scene.
+     */
     public void showSceneInventory() {
         try {
             this.getSceneInventory().showInventory();

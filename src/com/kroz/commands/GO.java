@@ -17,17 +17,8 @@ import com.kroz.enums.Direction;
  * @author Eleni Aidonidou
  */
 public class GO implements ICommand {
-    /**
-     * The current Player in the game.
-     */
     private Player currentPlayer;
-    /**
-     * The currentMap of the current Scenario.
-     */
     private Map currentMap;
-    /**
-     * The direction where the player wants to go to.
-     */
     private Direction directionToGoTo;
     private List<String> currentCommandTextList;
 
@@ -54,6 +45,13 @@ public class GO implements ICommand {
         return currentMap.canGoThere(newCurrentScene, directionToGoTo);
     }
 
+    /**
+     * Implementation of the executeCommand of the ICommand interface.
+     * As long as the command given by player is correct, checks whether
+     * the exit towards the preferred, by the player, direction meets the
+     * criteria to pass. Then it lets player change scene or not according
+     * the present conditions.
+     */
     @Override
     public void executeCommand() {
         //TODO call extractDirection
@@ -103,22 +101,38 @@ public class GO implements ICommand {
         return exit;
     }
 
+    /**
+     * Implements the setCurrentPlayer method of the ICommand interface.
+     * @param newCurrentPlayer Player who's interacting.
+     */
     @Override
     public void setCurrentPlayer(Player newCurrentPlayer) {
         this.currentPlayer = newCurrentPlayer;
         this.currentMap = newCurrentPlayer.getPlayerCurrentScenario().getScenarioMap();
     }
 
+    /**
+     * Implements the setCommandTextList method of the ICommand interface.
+     * @param newRawCommandText The actual input taken from the user through console.
+     */
     @Override
     public void setCommandTextList(List<String> newRawCommandText) {
         this.currentCommandTextList = newRawCommandText;
     }
 
+    /**
+     * Verifies whether or not the command given is correct.
+     */
     @Override
     public boolean isValid() {
         return this.currentCommandTextList.size() == 1;
     }
     
+    /**
+     * Checks whether the means to an exit are available
+     * for the player to pass them (e.g. door).
+     * @param exit The exit of a scene
+     */
     public boolean isExitClear(SceneExit exit){
         boolean exitClear = true;
         if(exit.getSceneDoor().getItemState().getValue().equals("OFF")){
@@ -127,14 +141,24 @@ public class GO implements ICommand {
         return exitClear;
     }
 
+    /**
+     * Get the direction to where the player wants to move to.
+     */
     public Direction getDirectionToGoTo() {
         return directionToGoTo;
     }
 
+    /**
+     * Sets the direction the player wants to move to from his input.
+     */
     public void setToDirection() {
         this.directionToGoTo = Direction.extractDirection(this.currentCommandTextList.get(0));
     }
 
+    /**
+     * Implements the getInvalidInputMessage method of the ICommand interface.
+     * Prints corresponding message when the player's input is invalid. 
+     */
     @Override
     public String getInvalidInputMessage() {
         return "Command GO takes one parameter. Try: [GO parameter]";

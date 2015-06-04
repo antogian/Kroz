@@ -19,20 +19,12 @@ public class SceneExit {
         initialize();
     }
 
-    /**
-     * Initializes the attributes of a new SceneExit object.
-     */
     private void initialize() {
         this.direction = Direction.DEFAULT;
         this.destinationScene = new Scene("Default Scene Description.");
         this.sceneDoor = new Door();
     }
 
-    /**
-     * Constructor with arguments for SceneExit objects.
-     * @param newDirection direction to which you can change scene (e.g. west)
-     * @param newDestinationScene Scene of the direction of the exit (e.g. 2)
-     */
     public SceneExit(Direction newDirection, Scene newDestinationScene) {
         this.direction = newDirection;
         this.destinationScene = newDestinationScene;

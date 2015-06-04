@@ -34,6 +34,9 @@ public class Key extends Item {
         this.currentItem.setLockState(ItemState.ENABLED);
     }
     
+    /**
+     * Implementation of the abstract method of the Item superclass.
+     */
     @Override
     public void changeItemState() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

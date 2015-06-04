@@ -31,9 +31,7 @@ public class DefaultScenario implements IScenario {
         this.setScenarioMap();
         this.scenarioComplete = false;
     }
-/**
- * Initializes the attributes of a new Scenario object.
- */
+
     private void initialize() {
         this.defaultScenarioMap = new Map();
         this.defaultScenarioSceneList = new ArrayList<Scene>();

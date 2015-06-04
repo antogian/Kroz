@@ -31,6 +31,9 @@ public class OpenableItem extends Item{
         this.currentLock = lockState;
     }
     
+    /**
+     * Implementation of the abstract method of the Item superclass.
+     */
     @Override
     public void changeItemState() {
         if (itemState == ItemState.DISABLED) {

@@ -27,10 +27,6 @@ public class Map {
         return map;
     }
 
-    /**
-     * Setting of new map.
-     * @param map an argument of complete map (i.e. a HashMap filled with keys and values)
-     */
     public void setMap(HashMap<Scene, List<SceneExit>> map) {
         this.map = map;
     }

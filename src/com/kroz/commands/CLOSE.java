@@ -30,6 +30,13 @@ public class CLOSE implements ICommand{
         this.currentItem = new OpenableItem();
     }
 
+    /**
+     * Implementation of the executeCommand of the ICommand interface.
+     * As long as the command given by player is correct,
+     * this method checks whether the object is available
+     * to interact with and as long as it is, checks whether 
+     * it is open to close it and vice versa.
+     */
     @Override
     public void executeCommand(){
         if(this.isValid()){
@@ -51,11 +58,19 @@ public class CLOSE implements ICommand{
         }
     }
     
+    /**
+     * Implements the setCurrentPlayer method of the ICommand interface.
+     * @param newCurrentPlayer Player who's interacting.
+     */
     @Override
     public void setCurrentPlayer(Player newCurrentPlayer){
         this.currentPlayer = newCurrentPlayer;
     }
     
+    /**
+     * Implements the setCommandTextList method of the ICommand interface.
+     * @param newRawCommandText The actual input taken from the user through console.
+     */
     @Override
     public void setCommandTextList(List<String> newRawCommandText){
         this.currentCommandTextList = newRawCommandText;
@@ -65,11 +80,17 @@ public class CLOSE implements ICommand{
         this.currentItem = newItem;
     }
     
+    /**
+     * Verifies whether or not the command given is correct.
+     */
     @Override
     public boolean isValid(){
         return this.currentCommandTextList.size() == 1;
     }
     
+    /**
+     * Checks whether or not the item is available at the current scene for the player to interact with.
+     */
     public boolean itemExists(){
         if (this.currentPlayer.getPlayerCurrentScene().getSceneInventory().itemExists(this.currentItem)){
             return true;
@@ -93,6 +114,10 @@ public class CLOSE implements ICommand{
         return this.currentItem.getItemState().getValue().equalsIgnoreCase("ON");
     }
 
+    /**
+     * Implements the getInvalidInputMessage method of the ICommand interface.
+     * Prints corresponding message when the player's input is invalid. 
+     */
     @Override
     public String getInvalidInputMessage() {
         return "Command CLOSE takes one parameter. Try: [CLOSE parameter]";

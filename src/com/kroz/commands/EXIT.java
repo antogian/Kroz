@@ -24,6 +24,11 @@ public class EXIT implements ICommand {
     void initialize() {
         currentCommandTextList = new ArrayList<String>();
     }
+    
+    /**
+     * Implementation of the executeCommand of the ICommand interface.
+     * As long as the command given by player is correct, it terminates the game.
+     */
     @Override
     public void executeCommand() {
         if (this.isValid()){
@@ -35,21 +40,36 @@ public class EXIT implements ICommand {
 
     }
 
+    /**
+     * Implements the setCurrentPlayer method of the ICommand interface.
+     * @param newCurrentPlayer Player who's interacting.
+     */
     @Override
     public void setCurrentPlayer(Player newCurrentPlayer) {
         this.currentPlayer = newCurrentPlayer;
     }
 
+    /**
+     * Implements the setCommandTextList method of the ICommand interface.
+     * @param newRawCommandText The actual input taken from the user through console.
+     */
     @Override
     public void setCommandTextList(List<String> newRawCommandText) {
         this.currentCommandTextList = newRawCommandText;
     }
 
+    /**
+     * Verifies whether or not the command given is correct.
+     */
     @Override
     public boolean isValid() {
         return this.currentCommandTextList.isEmpty();
     }
 
+    /**
+     * Implements the getInvalidInputMessage method of the ICommand interface.
+     * Prints corresponding message when the player's input is invalid. 
+     */
     @Override
     public String getInvalidInputMessage() {
         return "Command EXIT doesnt get any parameters. Try: [EXIT]";
