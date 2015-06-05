@@ -18,10 +18,6 @@ import com.kroz.scenario.IScenario;
  * @author Eleni Aidonidou
  */
 public class Main {
-    private Player player;
-    public void setPlayer(Player newPlayer){
-        this.player = newPlayer;
-    }
     /**
      * @param args the command line arguments
      */
@@ -37,16 +33,10 @@ public class Main {
         player.getPlayerName();
         player.setPlayerCurrentScenario(scenario);
         //Sets the players current scene to the first scene of the scenario
-        player.setPlayerCurrentScene(scenario.getScenarioSceneList().get(0));
-        /*
-         //Prints out the Scenes of the current Scenario
-        System.out.println("Scene List:");
-        for (Scene scene : scenario.getScenarioSceneList()) {
-            System.out.println(new StringBuilder()
-                    .append(" Scene Description: ").append(scene.getSceneDescription())
-                    .append("\n").toString());
+        if (player.getPlayerCurrentScene().getSceneDescription().equalsIgnoreCase("Default Scene Desctiption.")){
+            player.setPlayerCurrentScene(scenario.getScenarioSceneList().get(0));
         }
-        */
+
         System.out.println(player.getPlayerCurrentScene().getSceneDescription());
 
         while (!scenario.isScenarioComplete()) {
