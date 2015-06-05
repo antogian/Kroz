@@ -21,7 +21,7 @@ public class EXIT implements ICommand {
         initialize();
     }
 
-    void initialize() {
+    private void initialize() {
         currentCommandTextList = new ArrayList<String>();
     }
     

@@ -25,7 +25,7 @@ public class RESTORE implements ICommand{
         this.initialize();
     }
     
-    public void initialize(){
+    private void initialize(){
         this.currentPlayer = new Player();
         this.currentCommandTextList = new ArrayList<String>();
     }
@@ -89,8 +89,10 @@ public class RESTORE implements ICommand{
      * @param newPlayer The new "old" player object.
      */
     public void assignNewPlayer(Player newPlayer){
-        Main m = new Main();
-        m.setPlayer(newPlayer);
+        this.currentPlayer.setPlayerCurrentScenario(newPlayer.getPlayerCurrentScenario());
+        this.currentPlayer.setRawPlayerName(newPlayer.getRawPlayerName());
+        this.currentPlayer.setPlayerInventory(newPlayer.getPlayerInventory());
+        this.currentPlayer.setPlayerCurrentScene(newPlayer.getPlayerCurrentScene());
     }
     
     public Player getCurrentPlayer(){

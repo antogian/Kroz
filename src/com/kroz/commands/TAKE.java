@@ -24,7 +24,7 @@ public class TAKE implements ICommand{
         this.initialize();
     }
     
-    public void initialize(){
+    private void initialize(){
         this.currentPlayer = new Player();
         this.currentCommandTextList = new ArrayList<>();
         this.currentItem = new Trap();

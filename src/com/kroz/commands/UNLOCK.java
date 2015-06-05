@@ -28,7 +28,7 @@ public class UNLOCK implements ICommand{
         this.initialize();
     }
     
-    public void initialize(){
+    private void initialize(){
         this.currentCommandTextList = new ArrayList<>();
         this.currentKey = new Key();
         this.currentPlayer = new Player();
