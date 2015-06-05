@@ -5,9 +5,6 @@
  */
 package com.kroz.parsers;
 
-import com.kroz.scenario.CustomScenario;
-import com.kroz.scenario.DefaultScenario;
-import com.kroz.scenario.IScenario;
 import java.util.Scanner;
 
 /**
